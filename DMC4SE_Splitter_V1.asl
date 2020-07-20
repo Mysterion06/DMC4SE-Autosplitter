@@ -89,7 +89,7 @@ startup
     settings.SetToolTip("Dante/Nero", "Check this box if you play Dante's/Nero's campaign");
     settings.CurrentDefaultParent = "Dante/Nero";
     settings.Add("DoorSplitterDN");
-    settings.SetToolTip("DoorSplitterDN", "Activate this, if you want doorsplits and deactivate the other one");
+    settings.SetToolTip("DoorSplitterDN", "Activate this and Chapter 1-20DN if you want Doorsplits");
     settings.Add("Chapter 1-20DN");
     settings.CurrentDefaultParent = "Chapter 1-20DN";
     settings.Add("Chapter 1DN");
@@ -118,7 +118,7 @@ startup
     settings.CurrentDefaultParent = "Vergil";
     settings.SetToolTip("Vergil", "Check this box if you play Vergil's campaign");
     settings.Add("DoorSplitterV");
-    settings.SetToolTip("DoorSplitterV", "Activate this, if you want doorsplits and deactivate the other one");
+    settings.SetToolTip("DoorSplitterV", "Activate this and Chapter 1-20V if you want Doorsplits");
     settings.Add("Chapter 1-20V");
     settings.CurrentDefaultParent = "Chapter 1-20V";
     settings.Add("Chapter 1V");
@@ -148,7 +148,7 @@ startup
     settings.CurrentDefaultParent = "Lady/Trish";
     settings.SetToolTip("Lady/Trish", "Check this box if you play Lady's/Trish's campaign");
     settings.Add("DoorSplitterLT");
-    settings.SetToolTip("DoorSplitterLT", "Activate this, if you want doorsplits and deactivate the other one");
+    settings.SetToolTip("DoorSplitterLT", "Activate this and Chapter 1-20LT if you want Doorsplits");
     settings.Add("Chapter 1-20LT");
     settings.CurrentDefaultParent = "Chapter 1-20LT";
     settings.Add("Chapter 1LT");
