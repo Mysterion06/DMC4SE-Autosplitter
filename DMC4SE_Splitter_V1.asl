@@ -1241,7 +1241,7 @@ split
 
 
     //BossRush
-    if(settings["BossRush"] && old.bloodyPalace < current.bloodyPalace || settings["BossRush"] && current.boss == 16850701){    //Splitting for BossRush and killing Dante
+    if(settings["BossRush"] && old.bloodyPalace < current.bloodyPalace || settings["BossRush"] && current.boss == 16850701 && old.boss != 16850701){    //Splitting for BossRush and killing Dante
         vars.rush = (vars.rush + 1);
         if(settings["Berial"] && vars.rush == 1){
             return true;
@@ -1264,7 +1264,7 @@ split
 
     }
 
-    if(settings["BPS"] && old.bloodyPalace != current.bloodyPalace || settings["BPS"] && current.boss == 16850701) {            //Splitting for BP Stages and killing Dante
+    if(settings["BPS"] && old.bloodyPalace != current.bloodyPalace || settings["BPS"] && current.boss == 16850701 && old.boss != 16850701) {            //Splitting for BP Stages and killing Dante
         return true;
     }
 }
