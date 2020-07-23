@@ -32,8 +32,8 @@ state("DevilmayCry4SpecialEdition")
     int palaceCharacter: 0x00F240A4, 0x48, 0x380;   //Which character you choose for bloody palace
     int screen: 0xf59f00, 0x140;                    // ?
     int doorsplitter: 0xF23F38, 0x3830, 0x88;       //Current room Im in, shown in numbers
-    int stylepoints: 0xF59F00, 0x250;
-    int menu2: 0xF23F80, 0x4;                       //menu to stop the timer at menu screen
+    int stylepoints: 0xF59F00, 0x250;               //Your Devil Hunter Rank in points at the result screen
+    int menu: 0xF240A4, 0x2B4;                      //menu to stop the timer at menu screen
 }
 
 init
@@ -199,7 +199,7 @@ start
 isLoading
 {
     if(settings["LRT"]){
-        if((current.playerPos == 00000000 || current.cutscene > 0) && current.missionTime != 0|| current.cutscene > 0){     //Loadremover, removes Loads at the end of a chapter, going through doors and at cutscenes
+        if((current.playerPos == 00000000 || current.cutscene > 0 ) && current.missionTime != 0 || current.cutscene > 0 || current.menu == 0 && current.missionTime != 0 && current.missionTime == old.missionTime){     //Loadremover, removes Loads at the end of a chapter, going through doors, cutscenes and when pausing the game
             return true;
         }
         else{
@@ -1275,13 +1275,13 @@ split
 
 reset
 {
-    if ((current.missionNumber < old.missionNumber)                             //Reset for MainGame, when the new Chapter is smaller than the old Chapter (current 1 < old 5)
+    if ((current.missionNumber < old.missionNumber)                             //Reset for MainGame, when the new Chapter is smaller than the old Chapter
     || 
     (current.MenuOptionNumber == 8 && settings["BossRush"])                     //Reset for BossRush when going to main menu
     || 
     (current.MenuOptionNumber == 8 && settings ["BPS"])                         //Reset for BloodyPalace when going to main menu
     || 
-    (current.bloodyPalace < old.bloodyPalace && settings["BossRush"])            //Reset for BossRush when clicking next
+    (current.bloodyPalace < old.bloodyPalace && settings["BossRush"])           //Reset for BossRush when clicking next
     || 
     (current.bloodyPalace < old.bloodyPalace && settings["BPS"])){              //Reset for BloodyPalace when clicking next
         vars.split++;
