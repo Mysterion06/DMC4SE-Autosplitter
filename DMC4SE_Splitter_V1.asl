@@ -199,7 +199,7 @@ start
 isLoading
 {
     if(settings["LRT"]){
-        if((current.playerPos == 00000000 || current.cutscene > 0) && current.missionTime != 0|| current.cutscene > 0 || current.menu2 == 0 && current.missionTime != 0 && current.missionTime == old.missionTime){     //Loadremover, removes Loads at the end of a chapter, going through doors and at cutscenes
+        if((current.playerPos == 00000000 || current.cutscene > 0) && current.missionTime != 0|| current.cutscene > 0){     //Loadremover, removes Loads at the end of a chapter, going through doors and at cutscenes
             return true;
         }
         else{
