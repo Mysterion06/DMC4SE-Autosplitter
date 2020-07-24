@@ -34,6 +34,7 @@ state("DevilmayCry4SpecialEdition")
     int doorsplitter: 0xF23F38, 0x3830, 0x88;       //Current room Im in, shown in numbers
     int stylepoints: 0xF59F00, 0x250;               //Your Devil Hunter Rank in points at the result screen
     int menu: 0xF240A4, 0x2B4;                      //menu to stop the timer at menu screen
+    int menu4: 0xF23F84, 0x70, 0x1C;
 }
 
 init
@@ -199,7 +200,7 @@ start
 isLoading
 {
     if(settings["LRT"]){
-        if((current.playerPos == 00000000 || current.cutscene > 0 ) && current.missionTime != 0 && current.missionNumber != 1 || current.cutscene > 0 || current.menu == 0 && current.missionTime != 0 && current.missionTime == old.missionTime){     //Loadremover, removes Loads at the end of a chapter, going through doors, cutscenes and when pausing the game
+        if((current.playerPos == 00000000 || current.cutscene > 0 ) && current.missionTime != 0 && current.missionNumber != 1 || current.cutscene > 0 || current.menu4 > 0 && current.menu == 0 && current.missionTime == old.missionTime){     //Loadremover, removes Loads at the end of a chapter, going through doors, cutscenes and when pausing the game
             return true;
         }
         else{
