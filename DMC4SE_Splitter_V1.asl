@@ -34,7 +34,8 @@ state("DevilmayCry4SpecialEdition")
     int doorsplitter: 0xF23F38, 0x3830, 0x88;       //Current room Im in, shown in numbers
     int stylepoints: 0xF59F00, 0x250;               //Your Devil Hunter Rank in points at the result screen
     int menu: 0xF240A4, 0x2B4;                      //menu to stop the timer at menu screen
-    int menu4: 0xF23F84, 0x70, 0x1C;
+    int menu4: 0xF23F84, 0x70, 0x1C;                //Another menu used to stop the timer at menu screen
+    int menuReset: 0xF240A4, 0x44, 0xF8, 0xB8, 0x6C, 0x280; //Used to reset the timer in chapter selection
 }
 
 init
@@ -181,11 +182,11 @@ startup
 
 start
 {
-    if ((current.missionStart == 0 && current.missionNumber == 1 && settings["MainGame"])               //Starts the splits for main game
+    if ((current.missionStart == 0 && current.menuReset == 0 && current.missionNumber == 1 && settings["MainGame"]) //Starts the splits for main game
     ||
-    (current.bloodyPalace == 20 && current.LoadingScreen > 0 && settings["BossRush"])                   //Starts the splits for BossRush
+    (current.bloodyPalace == 20 && current.LoadingScreen > 0 && settings["BossRush"])                               //Starts the splits for BossRush
     || 
-    (current.bloodyPalace == 1 && current.LoadingScreen > 0 && settings["BPS"]))                        //Starts the splits for Bloody Palace
+    (current.bloodyPalace == 1 && current.LoadingScreen > 0 && settings["BPS"]))                                    //Starts the splits for Bloody Palace
     {              
         vars.split = 0;     //Sets the current Split to 0
         vars.chapter = 0;   //Sets the current Chapter to 0
@@ -1276,7 +1277,7 @@ split
 
 reset
 {
-    if ((current.missionNumber < old.missionNumber)                             //Reset for MainGame, when the new Chapter is smaller than the old Chapter
+    if ((current.menuReset == 1 || current.menuReset == 2 || current.menuReset == 3 || current.menuReset == 4 || current.menuReset == 5 || current.menuReset == 6 || current.menuReset == 7) && current.missionNumber >= 1 && settings["MainGame"] || current.missionNumber < old.missionNumber)         //Reset for MainGame, when the new Chapter is smaller than the old Chapter
     || 
     (current.MenuOptionNumber == 8 && settings["BossRush"])                     //Reset for BossRush when going to main menu
     || 
