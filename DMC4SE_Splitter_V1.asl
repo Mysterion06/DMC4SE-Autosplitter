@@ -1277,7 +1277,7 @@ split
 
 reset
 {
-    if (((current.MenuOptionNumber == 1 || current.MenuOptionNumber == 2 || current.MenuOptionNumber == 3 || current.MenuOptionNumber == 4 || current.MenuOptionNumber == 5 || current.MenuOptionNumber == 6 || current.MenuOptionNumber == 7) && current.missionNumber >= 1 && settings["MainGame"] || current.missionNumber < old.missionNumber)         //Reset for MainGame, when the new Chapter is smaller than the old Chapter
+    if (current.missionNumber < old.missionNumber)                              //Reset for MainGame, when the new Chapter is smaller than the old Chapter
     || 
     (current.MenuOptionNumber == 8 && settings["BossRush"])                     //Reset for BossRush when going to main menu
     || 
