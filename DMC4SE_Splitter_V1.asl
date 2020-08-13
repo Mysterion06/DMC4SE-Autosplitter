@@ -51,11 +51,13 @@ init
     vars.rush = 0; //sets rush to 0
 }
 
+
 startup
 {
     //Options to choose
     settings.Add("DMC4SE", true, "DMC4SE");
     settings.SetToolTip("DMC4SE", "Do not uncheck this box");
+
 
     settings.CurrentDefaultParent = "DMC4SE";
     settings.Add("DroppingFrames", false, "DroppingFrames");
@@ -66,6 +68,7 @@ startup
     settings.SetToolTip("60FPS", "Check this box if you play DMC4 with 60FPS or less");
     settings.SetToolTip("Variables", "Check this box if you play DMC4 with the variables settings");
 
+
     settings.CurrentDefaultParent = "DMC4SE";
     settings.Add("Loadremover");
     settings.Add("MainGame");
@@ -74,11 +77,45 @@ startup
     settings.SetToolTip("LRT", "Check this box if you want your Loads to be removed");
 
 
+    settings.CurrentDefaultParent = "MainGame";
+    settings.Add("DoorSplitter", false, "DoorSplitter");
+    settings.CurrentDefaultParent = "DoorSplitter";
+    settings.Add("DN", false, "DN");
+    settings.Add("V", false, "V");
+    settings.Add("LT", false, "LT");
+    settings.CurrentDefaultParent = "MainGame";
+    settings.Add("DN, V, LT", true, "DN, V, LT");
+    settings.SetToolTip("DN, V, LT", "Always have this box ticked");
+    settings.CurrentDefaultParent = "DN, V, LT";
+    settings.Add("Chapter 1-20DN/V/LT");
+    settings.CurrentDefaultParent = "Chapter 1-20DN/V/LT";
+    settings.Add("Chapter 1");
+    settings.Add("Chapter 2");
+    settings.Add("Chapter 3");
+    settings.Add("Chapter 4");
+    settings.Add("Chapter 5");
+    settings.Add("Chapter 6");
+    settings.Add("Chapter 7");
+    settings.Add("Chapter 8");
+    settings.Add("Chapter 9");
+    settings.Add("Chapter 10");
+    settings.Add("Chapter 11");
+    settings.Add("Chapter 12");
+    settings.Add("Chapter 13");
+    settings.Add("Chapter 14");
+    settings.Add("Chapter 15");
+    settings.Add("Chapter 16");
+    settings.Add("Chapter 17");
+    settings.Add("Chapter 18");
+    settings.Add("Chapter 19");
+    settings.Add("Chapter 20");
+    
+
     settings.CurrentDefaultParent = "DMC4SE";
     settings.Add("BloodyPalace/BossRush", false, "BloodyPalace/BossRush");
     settings.CurrentDefaultParent = "BloodyPalace/BossRush";
-    settings.Add("BPS");
-    settings.Add("BossRush");
+    settings.Add("BPS", false, "BPS");
+    settings.Add("BossRush", false, "BossRush");
     settings.CurrentDefaultParent = "BossRush";
     settings.SetToolTip("BossRush", "Uncheck this box if you DON'T do BossRush");
     settings.Add("Berial");
@@ -87,95 +124,6 @@ startup
     settings.Add("Credo");
     settings.Add("Agnus");
     settings.Add("Dante");
-
-    settings.CurrentDefaultParent = "MainGame";
-    settings.Add("Dante/Nero", false, "Dante/Nero");
-    settings.SetToolTip("Dante/Nero", "Check this box if you play Dante's/Nero's campaign");
-    settings.CurrentDefaultParent = "Dante/Nero";
-    settings.Add("DoorSplitterDN");
-    settings.SetToolTip("DoorSplitterDN", "Activate this and Chapter 1-20DN if you want Doorsplits");
-    settings.Add("Chapter 1-20DN");
-    settings.CurrentDefaultParent = "Chapter 1-20DN";
-    settings.Add("Chapter 1DN");
-    settings.Add("Chapter 2DN");
-    settings.Add("Chapter 3DN");
-    settings.Add("Chapter 4DN");
-    settings.Add("Chapter 5DN");
-    settings.Add("Chapter 6DN");
-    settings.Add("Chapter 7DN");
-    settings.Add("Chapter 8DN");
-    settings.Add("Chapter 9DN");
-    settings.Add("Chapter 10DN");
-    settings.Add("Chapter 11DN");
-    settings.Add("Chapter 12DN");
-    settings.Add("Chapter 13DN");
-    settings.Add("Chapter 14DN");
-    settings.Add("Chapter 15DN");
-    settings.Add("Chapter 16DN");
-    settings.Add("Chapter 17DN");
-    settings.Add("Chapter 18DN");
-    settings.Add("Chapter 19DN");
-    settings.Add("Chapter 20DN");
-
-    settings.CurrentDefaultParent = "MainGame";
-    settings.Add("Vergil", false, "Vergil");
-    settings.CurrentDefaultParent = "Vergil";
-    settings.SetToolTip("Vergil", "Check this box if you play Vergil's campaign");
-    settings.Add("DoorSplitterV");
-    settings.SetToolTip("DoorSplitterV", "Activate this and Chapter 1-20V if you want Doorsplits");
-    settings.Add("Chapter 1-20V");
-    settings.CurrentDefaultParent = "Chapter 1-20V";
-    settings.Add("Chapter 1V");
-    settings.Add("Chapter 2V");
-    settings.Add("Chapter 3V");
-    settings.Add("Chapter 4V");
-    settings.Add("Chapter 5V");
-    settings.Add("Chapter 6V");
-    settings.Add("Chapter 7V");
-    settings.Add("Chapter 8V");
-    settings.Add("Chapter 9V");
-    settings.Add("Chapter 10V");
-    settings.Add("Chapter 11V");
-    settings.Add("Chapter 12V");
-    settings.Add("Chapter 13V");
-    settings.Add("Chapter 14V");
-    settings.Add("Chapter 15V");
-    settings.Add("Chapter 16V");
-    settings.Add("Chapter 17V");
-    settings.Add("Chapter 18V");
-    settings.Add("Chapter 19V");
-    settings.Add("Chapter 20V");
-
-
-    settings.CurrentDefaultParent = "MainGame";
-    settings.Add("Lady/Trish", false, "Lady/Trish");
-    settings.CurrentDefaultParent = "Lady/Trish";
-    settings.SetToolTip("Lady/Trish", "Check this box if you play Lady's/Trish's campaign");
-    settings.Add("DoorSplitterLT");
-    settings.SetToolTip("DoorSplitterLT", "Activate this and Chapter 1-20LT if you want Doorsplits");
-    settings.Add("Chapter 1-20LT");
-    settings.CurrentDefaultParent = "Chapter 1-20LT";
-    settings.Add("Chapter 1LT");
-    settings.Add("Chapter 2LT");
-    settings.Add("Chapter 3LT");
-    settings.Add("Chapter 4LT");
-    settings.Add("Chapter 5LT");
-    settings.Add("Chapter 6LT");
-    settings.Add("Chapter 7LT");
-    settings.Add("Chapter 8LT");
-    settings.Add("Chapter 9LT");
-    settings.Add("Chapter 10LT");
-    settings.Add("Chapter 11LT");
-    settings.Add("Chapter 12LT");
-    settings.Add("Chapter 13LT");
-    settings.Add("Chapter 14LT");
-    settings.Add("Chapter 15LT");
-    settings.Add("Chapter 16LT");
-    settings.Add("Chapter 17LT");
-    settings.Add("Chapter 18LT");
-    settings.Add("Chapter 19LT");
-    settings.Add("Chapter 20LT");
-
 }
 
 
@@ -215,207 +163,73 @@ isLoading
 
 split
 {
-    //Vergil main game splitting *Just Chapters*
-    if (current.missionNumber > old.missionNumber && settings["Chapter 1-20V"] || current.missionNumber == 20 && current.boss == 33620487 && settings["Chapter 1-20V"] && old.boss != 33620487){
+    //Dante/Nero, Vergil and Lady/Trish Chapter splitting
+    if (current.missionNumber > old.missionNumber && settings["Chapter 1-20DN/V/LT"] || current.missionNumber == 20 && current.boss == 33620487 && settings["Chapter 1-20DN/V/LT"] && old.boss != 33620487){
         vars.chapter = (vars.chapter + 1);
-        if (settings["Chapter 1V"] && vars.chapter == 1){
+        if (settings["Chapter 1"] && vars.chapter == 1){
             return true;
         }
-        if (settings["Chapter 2V"] && vars.chapter == 2){
+        if (settings["Chapter 2"] && vars.chapter == 2){
             return true;
         }
-        if (settings["Chapter 3V"] && vars.chapter == 3){
+        if (settings["Chapter 3"] && vars.chapter == 3){
             return true;
         }
-        if (settings["Chapter 4V"] && vars.chapter == 4){
+        if (settings["Chapter 4"] && vars.chapter == 4){
             return true;
         }
-        if (settings["Chapter 5V"] && vars.chapter == 5){
+        if (settings["Chapter 5"] && vars.chapter == 5){
             return true;
         }
-        if (settings["Chapter 6V"] && vars.chapter == 6){
+        if (settings["Chapter 6"] && vars.chapter == 6){
             return true;
         }
-        if (settings["Chapter 7V"] && vars.chapter == 7){
+        if (settings["Chapter 7"] && vars.chapter == 7){
             return true;
         }
-        if (settings["Chapter 8V"] && vars.chapter == 8){
+        if (settings["Chapter 8"] && vars.chapter == 8){
             return true;
         }
-        if (settings["Chapter 9V"] && vars.chapter == 9){
+        if (settings["Chapter 9"] && vars.chapter == 9){
             return true;
         }
-        if (settings["Chapter 10V"] && vars.chapter == 10){
+        if (settings["Chapter 10"] && vars.chapter == 10){
             return true;
         }
-        if (settings["Chapter 11V"] && vars.chapter == 11){
+        if (settings["Chapter 11"] && vars.chapter == 11){
             return true;
         }
-        if (settings["Chapter 12V"] && vars.chapter == 12){
+        if (settings["Chapter 12"] && vars.chapter == 12){
             return true;
         }
-        if (settings["Chapter 13V"] && vars.chapter == 13){
+        if (settings["Chapter 13"] && vars.chapter == 13){
             return true;
         }
-        if (settings["Chapter 14V"] && vars.chapter == 14){
+        if (settings["Chapter 14"] && vars.chapter == 14){
             return true;
         }
-        if (settings["Chapter 15V"] && vars.chapter == 15){
+        if (settings["Chapter 15"] && vars.chapter == 15){
             return true;
         }
-        if (settings["Chapter 16V"] && vars.chapter == 16){
+        if (settings["Chapter 16"] && vars.chapter == 16){
             return true;
         }
-        if (settings["Chapter 17V"] && vars.chapter == 17){
+        if (settings["Chapter 17"] && vars.chapter == 17){
             return true;
         }
-        if (settings["Chapter 18V"] && vars.chapter == 18){
+        if (settings["Chapter 18"] && vars.chapter == 18){
             return true;
         }
-        if (settings["Chapter 19V"] && vars.chapter == 19){
+        if (settings["Chapter 19"] && vars.chapter == 19){
             return true;
         }
-        if (settings["Chapter 20V"] && vars.chapter == 20){
+        if (settings["Chapter 20"] && vars.chapter == 20){
             return true;
         }
     }
-
-
-    //Nero & Dante main game splitting *Just Chapters*
-    if (current.missionNumber > old.missionNumber && settings["Chapter 1-20DN"] || current.missionNumber == 20 && current.boss == 265223 && old.boss != 265223){
-        vars.chapter = (vars.chapter + 1);
-        if (settings["Chapter 1DN"] && vars.chapter == 1){
-            return true;
-        }
-        if (settings["Chapter 2DN"] && vars.chapter == 2){
-            return true;
-        }
-        if (settings["Chapter 3DN"] && vars.chapter == 3){
-            return true;
-        }
-        if (settings["Chapter 4DN"] && vars.chapter == 4){
-            return true;
-        }
-        if (settings["Chapter 5DN"] && vars.chapter == 5){
-            return true;
-        }
-        if (settings["Chapter 6DN"] && vars.chapter == 6){
-            return true;
-        }
-        if (settings["Chapter 7DN"] && vars.chapter == 7){
-            return true;
-        }
-        if (settings["Chapter 8DN"] && vars.chapter == 8){
-            return true;
-        }
-        if (settings["Chapter 9DN"] && vars.chapter == 9){
-            return true;
-        }
-        if (settings["Chapter 10DN"] && vars.chapter == 10){
-            return true;
-        }
-        if (settings["Chapter 11DN"] && vars.chapter == 11){
-            return true;
-        }
-        if (settings["Chapter 12DN"] && vars.chapter == 12){
-            return true;
-        }
-        if (settings["Chapter 13DN"] && vars.chapter == 13){
-            return true;
-        }
-        if (settings["Chapter 14DN"] && vars.chapter == 14){
-            return true;
-        }
-        if (settings["Chapter 15DN"] && vars.chapter == 15){
-            return true;
-        }
-        if (settings["Chapter 16DN"] && vars.chapter == 16){
-            return true;
-        }
-        if (settings["Chapter 17DN"] && vars.chapter == 17){
-            return true;
-        }
-        if (settings["Chapter 18DN"] && vars.chapter == 18){
-            return true;
-        }
-        if (settings["Chapter 19DN"] && vars.chapter == 19){
-            return true;
-        }
-        if (settings["Chapter 20DN"] && vars.chapter == 20){
-            return true;
-        }
-    }
-
-
-
-    //Lady & Trish main game splitting *Just Chapters*
-    if (current.missionNumber > old.missionNumber && settings["Chapter 1-20LT"] || current.missionNumber == 20 && current.boss == 33620487 && old.boss != 33620487){
-        vars.chapter = (vars.chapter + 1);
-        if (settings["Chapter 1LT"] && vars.chapter == 1){
-            return true;
-        }
-        if (settings["Chapter 2LT"] && vars.chapter == 2){
-            return true;
-        }
-        if (settings["Chapter 3LT"] && vars.chapter == 3){
-            return true;
-        }
-        if (settings["Chapter 4LT"] && vars.chapter == 4){
-            return true;
-        }
-        if (settings["Chapter 5LT"] && vars.chapter == 5){
-            return true;
-        }
-        if (settings["Chapter 6LT"] && vars.chapter == 6){
-            return true;
-        }
-        if (settings["Chapter 7LT"] && vars.chapter == 7){
-            return true;
-        }
-        if (settings["Chapter 8LT"] && vars.chapter == 8){
-            return true;
-        }
-        if (settings["Chapter 9LT"] && vars.chapter == 9){
-            return true;
-        }
-        if (settings["Chapter 10LT"] && vars.chapter == 10){
-            return true;
-        }
-        if (settings["Chapter 11LT"] && vars.chapter == 11){
-            return true;
-        }
-        if (settings["Chapter 12LT"] && vars.chapter == 12){
-            return true;
-        }
-        if (settings["Chapter 13LT"] && vars.chapter == 13){
-            return true;
-        }
-        if (settings["Chapter 14LT"] && vars.chapter == 14){
-            return true;
-        }
-        if (settings["Chapter 15LT"] && vars.chapter == 15){
-            return true;
-        }
-        if (settings["Chapter 16LT"] && vars.chapter == 16){
-            return true;
-        }
-        if (settings["Chapter 17LT"] && vars.chapter == 17){
-            return true;
-        }
-        if (settings["Chapter 18LT"] && vars.chapter == 18){
-            return true;
-        }
-        if (settings["Chapter 19LT"] && vars.chapter == 19){
-            return true;
-        }
-        if (settings["Chapter 20LT"] && vars.chapter == 20){
-            return true;
-        }
-    }
-
 
     //Vergil Doorsplits
-    if(settings["DoorSplitterV"] && settings["Chapter 1-20V"]){
+    if(settings["V"] && settings["Chapter 1-20DN/V/LT"]){
         //Chapter 2
         if((current.doorsplitter == 2 && old.doorsplitter != 2 && current.missionNumber == 2 && vars.split == 0)
         ||
@@ -688,7 +502,7 @@ split
 
 
     //Dante & Nero Doorsplits
-    if(settings["DoorSplitterDN"] && settings["Chapter 1-20DN"]){
+    if(settings["DN"] && settings["Chapter 1-20DN/V/LT"]){
         if((old.missionNumber < current.missionNumber)                                                                 
         ||
         //Chapter 2
@@ -966,7 +780,7 @@ split
 
 
     //Lady & Trish Doorsplits
-    if(settings["DoorSplitterLT"] && settings["Chapter 1-20LT"]){
+    if(settings["LT"] && settings["Chapter 1-20DN/V/LT"]){
         if((old.missionNumber < current.missionNumber)                                                                 
         ||
         //Chapter 2
