@@ -3,12 +3,9 @@
 
 
 //                                                       Disclaimer: 
-//                 If you are running the main game, untick everything except LRT and Chapter 1-20 depending on the campaign you play
-//                 If you do doorsplitter, untick everything except LRT, Doorsplitter and Chapter 1-20 depending on the campaign you play
-//                 For example you play Vergil doorsplits: tick LRT, DoorSplitterV & Chapter 1-20V
+//                 If you play the MainGame tick the Chapter 1-20DN/V/LT and if you want to use the doorsplitter, tick
 //                 If you play Boss Rush, untick BPS and MainGame, tick LRT & BossRush
 //                 If you play Bloody Palace, untick BossRush and MainGame, tick LRT & BPS
-//                 IF YOU PLAY NG+ NEVER EVER RESET AT CHAPTER 1, ATLEAST PLAY PAST CHAPTER 1, TO NOT GET AN INFINITY LOOP thank u
 //                 If you are having lags or you are dropping frames, go to speedrun.com and download the .exe file and exchange it with yours
 //                 To use this splitter, you have to downpatch your game and exchange your .exe and .dll file to get your game to downpatch, a tutorial for that is on the discord server or speedrun.com
 
@@ -37,6 +34,8 @@ state("DevilmayCry4SpecialEdition")
     int menu4: 0xF23F84, 0x70, 0x1C;                //Another menu used to stop the timer at menu screen
     int menuReset: 0xF240A4, 0x44, 0xF8, 0xB8, 0x6C, 0x280; //Used to reset the timer in chapter selection
     int m1LRT: 0xf59f00, 0x140;                     //Used to remove loadings of mission 1
+    int ngPlusReset: 0xEC9A30, 0x4F8, 0x1C;         //Reset for NG+
+    int ngStart: 0xf23f80, 0x4;                     //Starting timer for NG after the savefile was created
 }
 
 init
@@ -131,11 +130,11 @@ startup
 
 start
 {
-    if ((current.missionStart == 0 && current.menuReset == 0 && current.missionNumber == 1 && settings["MainGame"]) //Starts the splits for main game
+    if (((current.ngPlusReset != 592 && old.ngPlusReset == 592 || current.ngPlusReset == 352 && current.ngStart == 0 && old.ngStart > 0) && current.missionNumber == 1 && settings["MainGame"]) //Starts the splits for main game
     ||
-    (current.bloodyPalace == 20 && current.LoadingScreen > 0 && settings["BossRush"])                               //Starts the splits for BossRush
-    || 
-    (current.bloodyPalace == 1 && current.LoadingScreen > 0 && settings["BPS"]))                                    //Starts the splits for Bloody Palace
+    (current.bloodyPalace == 20 && current.LoadingScreen > 0 && settings["BossRush"])           //Starts the splits for BossRush
+    ||
+    (current.bloodyPalace == 1 && current.LoadingScreen > 0 && settings["BPS"]))                //Starts the splits for Bloody Palace
     {              
         vars.split = 0;     //Sets the current Split to 0
         vars.chapter = 0;   //Sets the current Chapter to 0
@@ -158,9 +157,6 @@ isLoading
         }
     }    
 }
-
-
-
 
 split
 {
@@ -1092,7 +1088,7 @@ split
 
 reset
 {
-    if ((current.missionNumber < old.missionNumber)                              //Reset for MainGame, when the new Chapter is smaller than the old Chapter
+    if ((current.missionNumber < old.missionNumber || current.ngPlusReset == 592 && settings["MainGame"])                              //Reset for MainGame, when the new Chapter is smaller than the old Chapter
     || 
     (current.MenuOptionNumber == 8 && settings["BossRush"])                     //Reset for BossRush when going to main menu
     || 
