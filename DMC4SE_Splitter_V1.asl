@@ -149,7 +149,7 @@ start
 isLoading
 {
     if(settings["LRT"]){
-        if((current.playerPos == 00000000 || current.cutscene > 0 ) && current.missionTime != 0 && current.missionNumber != 1 || current.cutscene > 0 || current.menu4 > 0 && current.menu == 0 && current.missionTime == old.missionTime && current.missionNumber != 1 || current.m1LRT == 0 && current.missionNumber == 1 && current.missionTime == old.missionTime){     //Loadremover, removes Loads at the end of a chapter, going through doors, cutscenes and when pausing the game
+        if((current.playerPos == 00000000 || current.cutscene > 0 ) && current.missionTime != 0 && current.missionNumber != 1 || current.cutscene > 0 || current.menu4 > 0 && current.menu == 0 && current.missionTime == old.missionTime && current.missionNumber != 1 || current.m1LRT == 0 && current.missionNumber == 1 && current.missionTime == old.missionTime && current.ngPlusReset != 928){     //Loadremover, removes Loads at the end of a chapter, going through doors, cutscenes and when pausing the game
             return true;
         }
         else{
@@ -161,7 +161,7 @@ isLoading
 split
 {
     //Dante/Nero, Vergil and Lady/Trish Chapter splitting
-    if (current.missionNumber > old.missionNumber && settings["Chapter 1-20DN/V/LT"] || current.missionNumber == 20 && current.boss == 33620487 && settings["Chapter 1-20DN/V/LT"] && old.boss != 33620487){
+    if (current.missionNumber > old.missionNumber && settings["Chapter 1-20DN/V/LT"] || (current.boss == 33620487 && old.boss != 33620487 || current.boss == 265223 && old.boss != 265223) && current.missionNumber == 20 && settings["Chapter 1-20DN/V/LT"]){
         vars.chapter = (vars.chapter + 1);
         if (settings["Chapter 1"] && vars.chapter == 1){
             return true;
