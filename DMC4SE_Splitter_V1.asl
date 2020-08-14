@@ -34,7 +34,7 @@ state("DevilmayCry4SpecialEdition")
     int menu4: 0xF23F84, 0x70, 0x1C;                //Another menu used to stop the timer at menu screen
     int menuReset: 0xF240A4, 0x44, 0xF8, 0xB8, 0x6C, 0x280; //Used to reset the timer in chapter selection
     int m1LRT: 0xf59f00, 0x140;                     //Used to remove loadings of mission 1
-    int ngPlusReset: 0xEC9A30, 0x4F8, 0x1C;         //Reset for NG+
+    int ngPlusReset: 0xEC9A34, 0x4;         //Reset for NG+
     int ngStart: 0xf23f80, 0x4;                     //Starting timer for NG after the savefile was created
 }
 
