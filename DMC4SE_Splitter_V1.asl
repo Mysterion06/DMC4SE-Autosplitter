@@ -36,6 +36,7 @@ state("DevilmayCry4SpecialEdition")
     int menu: 0xF240A4, 0x2B4;                      //menu to stop the timer at menu screen
     int menu4: 0xF23F84, 0x70, 0x1C;                //Another menu used to stop the timer at menu screen
     int menuReset: 0xF240A4, 0x44, 0xF8, 0xB8, 0x6C, 0x280; //Used to reset the timer in chapter selection
+    int m1LRT: 0xf59f00, 0x140;                     //Used to remove loadings of mission 1
 }
 
 init
@@ -149,7 +150,7 @@ start
 isLoading
 {
     if(settings["LRT"]){
-        if((current.playerPos == 00000000 || current.cutscene > 0 ) && current.missionTime != 0 && current.missionNumber != 1 || current.cutscene > 0 || current.menu4 > 0 && current.menu == 0 && current.missionTime == old.missionTime && current.missionNumber != 1){     //Loadremover, removes Loads at the end of a chapter, going through doors, cutscenes and when pausing the game
+        if((current.playerPos == 00000000 || current.cutscene > 0 ) && current.missionTime != 0 && current.missionNumber != 1 || current.cutscene > 0 || current.menu4 > 0 && current.menu == 0 && current.missionTime == old.missionTime && current.missionNumber != 1 || current.m1LRT == 0 && current.missionNumber == 1 && current.missionTime == old.missionTime){     //Loadremover, removes Loads at the end of a chapter, going through doors, cutscenes and when pausing the game
             return true;
         }
         else{
