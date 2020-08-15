@@ -8,57 +8,61 @@
 //                 If you are having lags or you are dropping frames, go to speedrun.com and download the .exe file and exchange it with yours
 //                 To use this splitter, you have to downpatch your game and exchange your .exe and .dll file to get your game to downpatch, a tutorial for that is on the discord server or speedrun.com
 
-state("DevilmayCry4SpecialEdition", "Before Patch")
+
+state("DevilmayCry4SpecialEdition")
 {
-    int missionNumber: 0xF59F00, 0x150;             //Chapter 1-20 All Characters
-    int missionStart: 0x00F59F00, 0x1A8;            //Mission menu start mission 1 All Characters
-    int roomID: 0x1359F00, 0x154;                   //Current room Im in, shown in numbers
-    int missionTime: 0xF59F00, 0x264;               //missionTime for each Chapter
-    int cutscene: 0xF59F00, 0x1A4;                  //Cutscenes
-    int missionNumberVHoH: 0x1359F10, 0x104;        //Vergil missionNumber Heaven or Hell
-    int MenuOptionNumber: 0x00F240A4, 0x48, 0x280;  //MenuOptionNumber
-    int bossStart: 0xf59f00, 0x120;                 //Boss start
-    int playerPos: 0xf59f00, 0x24;                  // ?
-    int csFlag: 0xf59f00, 0x17C;                    //Cutscene Event Flag (?)
-    int LoadingScreen: 0xF59F00, 0x14C;             //Pointer that is used to improvise the Loading screen
-    int bloodyPalace: 0xF23F38, 0x3830, 0x90;       //Bloody palace stage
-    int boss: 0xF23F38, 0x3834, 0x50, 0x0;          //A random value that changes, after doing certain stuff, used for splitting
-    int bloodyStart: 0xF23F38, 0x3834, 0x10034;     //Bloody Palace starts
-    int palaceCharacter: 0x00F240A4, 0x48, 0x380;   //Which character you choose for bloody palace
-    int screen: 0xf59f00, 0x140;                    // ?
-    int doorsplitter: 0xF23F38, 0x3830, 0x88;       //Current room Im in, shown in numbers
-    int stylepoints: 0xF59F00, 0x250;               //Your Devil Hunter Rank in points at the result screen
-    int menu: 0xF240A4, 0x2B4;                      //menu to stop the timer at menu screen
-    int menu4: 0xF23F84, 0x70, 0x1C;                //Another menu used to stop the timer at menu screen
-    int menuReset: 0xF240A4, 0x44, 0xF8, 0xB8, 0x6C, 0x280; //Used to reset the timer in chapter selection
-    int m1LRT: 0xf59f00, 0x140;                     //Used to remove loadings of mission 1
-    int ngPlusReset: 0xEC9A34, 0x4;                 //Reset for NG+
-    int ngStart: 0xf23f80, 0x4;                     //Starting timer for NG after the savefile was created
+    int missionNumber:      0xF59F00, 0x150;                                //Chapter 1-20 All Characters
+    int missionTime:        0xF59F00, 0x264;                                //missionTime for each Chapter
+    int missionStart:       0xF59F00, 0x1A8;                                //Mission menu start mission 1 All Characters    
+    int cutscene:           0xF59F00, 0x1A4;                                //Cutscenes    
+    int bossStart:          0xF59F00, 0x120;                                //Boss start    
+    int playerPos:          0xF59F00, 0x24;                                 // ?    
+    int screen:             0xF59F00, 0x140;                                // ?    
+    int csFlag:             0xF59F00, 0x17C;                                //Cutscene Event Flag (?)    
+    int LoadingScreen:      0xF59F00, 0x14C;                                //Pointer that is used to improvise the Loading screen    
+    int stylepoints:        0xF59F00, 0x250;                                //Your Devil Hunter Rank in points at the result screen    
+    int m1LRT:              0xF59F00, 0x140;                                //Used to remove loadings of mission 1
+    int bloodyPalace:       0xF23F38, 0x3830, 0x90;                         //Bloody palace stage
+    int boss:               0xF23F38, 0x3834, 0x50, 0x0;                    //A random value that changes, after doing certain stuff, used for splitting
+    int bloodyStart:        0xF23F38, 0x3834, 0x10034;                      //Bloody Palace starts    
+    int doorsplitter:       0xF23F38, 0x3830, 0x88;                         //Current room Im in, shown in numbers
+    int palaceCharacter:    0xF240A4, 0x48, 0x380;                          //Which character you choose for bloody palace    
+    int MenuOptionNumber:   0xF240A4, 0x48, 0x280;                          //MenuOptionNumber    
+    int menuReset:          0xF240A4, 0x44, 0xF8, 0xB8, 0x6C, 0x280;        //Used to reset the timer in chapter selection
+    int menu:               0xF240A4, 0x2B4;                                //menu to stop the timer at menu screen
+    int menu4:              0xF23F84, 0x70, 0x1C;                           //Another menu used to stop the timer at menu screen
+    int ngPlusReset:        0xEC9A34, 0x4;                                  //Reset for NG+
+    int ngStart:            0xF23F80, 0x4;                                  //Starting timer for NG after the savefile was created    
+    int roomID:             0x1359F00, 0x154;                               //Current room Im in, shown in numbers
+    int missionNumberVHoH:  0x1359F10, 0x104;                               //Vergil missionNumber Heaven or Hell
 }
 
 state("DevilMayCry4SpecialEdition", "After Patch")
 {
-    int missionNumber: 0xEDEEC4, 0x150;
-    int playerPos         : 0xEDEEC4, 0x24;
-    int bossStart         : 0xEDEEC4, 0x120;
-    int m1LRT             : 0xEDEEC4, 0x140;
-    int missionNumber     : 0xEDEEC4, 0x150;
-    int stylepoints       : 0xEDEEC4, 0x250;
-    int missionStart      : 0xEDEEC4, 0x1A8;
-    int loadingScreen     : 0xEDEEC4, 0x14C;
-    int csFlag            : 0xEDEEC4, 0x17C;
-    int missionTime       : 0xEDEEC4, 0x264;
+    int missionNumber:      0xEDEEC4, 0x150;
+    int playerPos:          0xEDEEC4, 0x24;
+    int bossStart:          0xEDEEC4, 0x120;
+    int m1LRT:              0xEDEEC4, 0x140;
+    int missionNumber:      0xEDEEC4, 0x150;
+    int stylepoints:        0xEDEEC4, 0x250;
+    int missionStart:       0xEDEEC4, 0x1A8;
+    int loadingScreen:      0xEDEEC4, 0x14C;
+    int csFlag:             0xEDEEC4, 0x17C;
+    int missionTime:        0xEDEEC4, 0x264;
 }
+
 
 init
 {
-    switch (modules.First().ModuleMemorySize) {
+    switch (modules.First().ModuleMemorySize) 
+    {
         case (16457728):
-        version = "Before Patch";
-        break;
+            break;
+        case (16154624):
+            version = "After Patch";
+            break;
         default:
-        version = "After Patch";
-        break;
+            break;
     }
 
     if(settings["60FPS"]){
@@ -71,7 +75,6 @@ init
     vars.chapter = 0; //Sets the current Chapter to 0
     vars.rush = 0; //sets rush to 0
 }
-
 
 startup
 {
@@ -142,6 +145,7 @@ startup
 }
 
 
+
 start
 {
     if(((current.ngPlusReset != 592 && old.ngPlusReset == 592 || current.ngPlusReset == 352 && current.ngStart == 0 && old.ngStart > 0) && current.missionNumber == 1 && settings["MainGame"])
@@ -174,6 +178,7 @@ isLoading
         }
     }    
 }
+
 
 split
 {
@@ -541,8 +546,6 @@ reset
     (current.ngPlusReset == 592 && settings["BossRush"])                     //Reset for BossRush when going to main menu
     || 
     (current.ngPlusReset == 592 && settings["BPS"])){                        //Reset for BloodyPalace when going to main menu
-        vars.split++;
         return true;
     }
 }
-
