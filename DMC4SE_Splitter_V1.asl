@@ -229,7 +229,7 @@ split
     }
 
     //Dante & Nero/Vergil & Lady/Trish Doorsplitter
-    if((settings["DN/V"] || settings["LT"]) && settings["Chapter 1-20DN/V/LT"]){
+    if(settings["DN/V"] && settings["Chapter 1-20DN/V/LT"]){
         if((old.missionNumber < current.missionNumber)                                                                 
         ||
         //Chapter 2
