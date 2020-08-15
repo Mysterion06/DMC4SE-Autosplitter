@@ -39,6 +39,15 @@ state("DevilmayCry4SpecialEdition", "Before Patch")
 state("DevilMayCry4SpecialEdition", "After Patch")
 {
     int missionNumber: 0xEDEEC4, 0x150;
+    int playerPos         : 0xEDEEC4, 0x24;
+    int bossStart         : 0xEDEEC4, 0x120;
+    int m1LRT             : 0xEDEEC4, 0x140;
+    int missionNumber     : 0xEDEEC4, 0x150;
+    int stylepoints       : 0xEDEEC4, 0x250;
+    int missionStart      : 0xEDEEC4, 0x1A8;
+    int loadingScreen     : 0xEDEEC4, 0x14C;
+    int csFlag            : 0xEDEEC4, 0x17C;
+    int missionTime       : 0xEDEEC4, 0x264;
 }
 
 init
@@ -500,7 +509,7 @@ split
      
 
     //BossRush
-    if(settings["BossRush"] && old.bloodyPalace < current.bloodyPalace || settings["BossRush"] && current.boss == 16850701 && old.boss != 16850701 && current.bloodyPalace == 101){
+    if(settings["BossRush"] && old.bloodyPalace < current.bloodyPalace || settings["BossRush"] && current.boss == 16850701 && old.boss != 16850701 && current.bloodyPalace == 101){ 
         vars.rush = (vars.rush + 1);
         if((settings["Berial"] && vars.rush == 1)
         ||
@@ -527,11 +536,11 @@ split
 
 reset
 {
-    if ((current.missionNumber < old.missionNumber || current.ngPlusReset == 592 && settings["MainGame"])   //Reset for MainGame, when the new Chapter is smaller than the old Chapter
+    if((current.missionNumber < old.missionNumber || current.ngPlusReset == 592 && settings["MainGame"])   //Reset for MainGame, when the new Chapter is smaller than the old Chapter
     || 
-    (current.MenuOptionNumber == 592 && settings["BossRush"])                     //Reset for BossRush when going to main menu
+    (current.ngPlusReset == 592 && settings["BossRush"])                     //Reset for BossRush when going to main menu
     || 
-    (current.MenuOptionNumber == 592 && settings ["BPS"])                         //Reset for BloodyPalace when going to main menu
+    (current.ngPlusReset == 592 && settings["BPS"])){                        //Reset for BloodyPalace when going to main menu
         vars.split++;
         return true;
     }
