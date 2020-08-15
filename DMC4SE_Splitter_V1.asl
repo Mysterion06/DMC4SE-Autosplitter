@@ -37,34 +37,8 @@ state("DevilmayCry4SpecialEdition")
     int missionNumberVHoH:  0x1359F10, 0x104;                               //Vergil missionNumber Heaven or Hell
 }
 
-state("DevilMayCry4SpecialEdition", "After Patch")
-{
-    int missionNumber:      0xEDEEC4, 0x150;
-    int playerPos:          0xEDEEC4, 0x24;
-    int bossStart:          0xEDEEC4, 0x120;
-    int m1LRT:              0xEDEEC4, 0x140;
-    int missionNumber:      0xEDEEC4, 0x150;
-    int stylepoints:        0xEDEEC4, 0x250;
-    int missionStart:       0xEDEEC4, 0x1A8;
-    int loadingScreen:      0xEDEEC4, 0x14C;
-    int csFlag:             0xEDEEC4, 0x17C;
-    int missionTime:        0xEDEEC4, 0x264;
-}
-
-
 init
 {
-    switch (modules.First().ModuleMemorySize) 
-    {
-        case (16457728):
-            break;
-        case (16154624):
-            version = "After Patch";
-            break;
-        default:
-            break;
-    }
-
     if(settings["60FPS"]){
         refreshRate = 30;
     }
