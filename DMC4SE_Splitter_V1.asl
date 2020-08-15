@@ -8,7 +8,6 @@
 //                 If you are having lags or you are dropping frames, go to speedrun.com and download the .exe file and exchange it with yours
 //                 To use this splitter, you have to downpatch your game and exchange your .exe and .dll file to get your game to downpatch, a tutorial for that is on the discord server or speedrun.com
 
-
 state("DevilmayCry4SpecialEdition")
 {
     int missionNumber:      0xF59F00, 0x150;                                //Chapter 1-20 All Characters
@@ -122,7 +121,7 @@ startup
 
 start
 {
-    if(((current.ngPlusReset != 592 && old.ngPlusReset == 592 || current.ngPlusReset == 352 && current.ngStart == 0 && old.ngStart > 0) && current.missionNumber == 1 && settings["MainGame"])
+    if(((current.ngPlusReset != 592 && old.ngPlusReset == 592 || current.ngPlusReset == 352 && current.ngStart == 0 && old.ngStart > 0)&& settings["MainGame"])
     ||
     (current.bloodyPalace == 20 && current.LoadingScreen > 0 && settings["BossRush"])           //Starts the splits for BossRush
     ||
@@ -203,7 +202,7 @@ split
     }
 
     //Dante & Nero/Vergil & Lady/Trish Doorsplitter
-    if(settings["DN/V"] && settings["Chapter 1-20DN/V/LT"]){
+    if((settings["DN/V"] || settings["LT"]) && settings["Chapter 1-20DN/V/LT"]){
         if((old.missionNumber < current.missionNumber)                                                                 
         ||
         //Chapter 2
@@ -422,6 +421,10 @@ split
         (current.doorsplitter == 201 && old.doorsplitter == 202 && current.missionNumber == 15 && vars.split == 100)
         ||
         (current.doorsplitter == 203 && old.doorsplitter == 201 && current.missionNumber == 15 && vars.split == 101)
+        ||
+        (current.doorsplitter == 211 && old.doorsplitter == 203 && current.missionNumber == 15 && settings["LT"])
+        ||
+        (current.doorsplitter == 203 && old.doorsplitter == 211 && current.missionNumber == 15 && settings["LT"])
         ||
         (current.doorsplitter == 210 && old.doorsplitter == 203 && current.missionNumber == 15 && vars.split == 102)
         ||
@@ -474,289 +477,15 @@ split
         ||
         //Chapter 20
         (current.doorsplitter == 13 && old.doorsplitter != 13 && current.missionNumber == 20 && vars.split == 125)){
-            vars.split++;
-            return true;
+            if (current.missionNumber == 15 && settings["LT"] && (current.dorrsplitter == 211 && old.doorsplitter == 203 || current.doorsplitter == 203 && old.doorsplitter == 211)) {
+                return true;
+            }
+            else{
+                vars.split++;
+                return true;
+            }
         }
     }
-    
-        //Lady & Trish Doorsplits
-    if(settings["LT"] && settings["Chapter 1-20DN/V/LT"]){
-        if((old.missionNumber < current.missionNumber)                                                                 
-        ||
-        //Chapter 2
-        (current.doorsplitter  == 2 && old.doorsplitter != 2 && current.missionNumber == 2 && vars.split == 0)
-        ||
-        (current.doorsplitter == 4 && old.doorsplitter == 2 && current.missionNumber == 2 && vars.split == 1)
-        ||
-        (current.doorsplitter == 3 && old.doorsplitter == 4 && current.missionNumber == 2 && vars.split == 2)
-        ||
-        (current.doorsplitter == 4 && old.doorsplitter == 3 && current.missionNumber == 2 && vars.split == 3)
-        ||
-        (current.doorsplitter == 5 && old.doorsplitter == 4 && current.missionNumber == 2 && vars.split == 4)
-        ||
-        (current.doorsplitter == 6 && old.doorsplitter == 5 && current.missionNumber == 2 && vars.split == 5)
-        ||
-        (current.doorsplitter == 7 && old.doorsplitter == 6 && current.missionNumber == 2 && vars.split == 6)
-        ||
-        (current.doorsplitter == 6 && old.doorsplitter == 7 && current.missionNumber == 2 && vars.split == 7)
-        ||
-        (current.doorsplitter == 7 && old.doorsplitter == 6 && current.missionNumber == 2 && vars.split == 8)
-        ||
-        (current.doorsplitter == 6 && old.doorsplitter == 7 && current.missionNumber == 2 && vars.split == 9)
-        ||
-        (current.doorsplitter == 8 && old.doorsplitter == 6 && current.missionNumber == 2 && vars.split == 10)
-        ||
-        (current.doorsplitter == 9 && old.doorsplitter == 8 && current.missionNumber == 2 && vars.split == 11)
-        ||
-        //Chapter 3
-        (current.doorsplitter == 105 && old.doorsplitter != 105 && current.missionNumber == 3 && vars.split == 12)
-        ||
-        (current.doorsplitter == 200 && old.doorsplitter == 105 && current.missionNumber == 3 && vars.split == 13)
-        ||
-        (current.doorsplitter == 201 && old.doorsplitter == 200 && current.missionNumber == 3 && vars.split == 14)
-        ||
-        (current.doorsplitter == 203 && old.doorsplitter == 201 && current.missionNumber == 3 && vars.split == 15)
-        ||
-        (current.doorsplitter == 200 && old.doorsplitter == 203 && current.missionNumber == 3 && vars.split == 16)
-        ||
-        (current.doorsplitter == 204 && old.doorsplitter == 200 && current.missionNumber == 3 && vars.split == 17)
-        ||
-        (current.doorsplitter == 205 && old.doorsplitter == 204 && current.missionNumber == 3 && vars.split == 18)
-        ||
-        (current.doorsplitter == 204 && old.doorsplitter == 205 && current.missionNumber == 3 && vars.split == 19)
-        ||
-        (current.doorsplitter == 200 && old.doorsplitter == 204 && current.missionNumber == 3 && vars.split == 20)
-        ||
-        (current.doorsplitter == 206 && old.doorsplitter == 200 && current.missionNumber == 3 && vars.split == 21)
-        ||
-        (current.doorsplitter == 207 && old.doorsplitter == 206 && current.missionNumber == 3 && vars.split == 22)
-        ||
-        //Chapter 4
-        (current.doorsplitter == 206 && old.doorsplitter != 206 && current.missionNumber == 4 && vars.split == 23)
-        ||
-        (current.doorsplitter == 200 && old.doorsplitter == 206 && current.missionNumber == 4 && vars.split == 24)
-        ||
-        (current.doorsplitter == 201 && old.doorsplitter == 200 && current.missionNumber == 4 && vars.split == 25)
-        ||
-        (current.doorsplitter == 202 && old.doorsplitter == 201 && current.missionNumber == 4 && vars.split == 26)
-        ||
-        (current.doorsplitter == 201 && old.doorsplitter == 202 && current.missionNumber == 4 && vars.split == 27)
-        ||
-        (current.doorsplitter == 204 && old.doorsplitter == 201 && current.missionNumber == 4 && vars.split == 28)
-        ||
-        //Chapter 5
-        (current.doorsplitter == 210 && old.doorsplitter != 210 && current.missionNumber == 5 && vars.split == 29)
-        ||
-        (current.doorsplitter == 203 && old.doorsplitter == 210 && current.missionNumber == 5 && vars.split == 30)
-        ||
-        (current.doorsplitter == 211 && old.doorsplitter == 203 && current.missionNumber == 5 && vars.split == 31)
-        ||
-        (current.doorsplitter == 203 && old.doorsplitter == 211 && current.missionNumber == 5 && vars.split == 32)
-        ||
-        (current.doorsplitter == 201 && old.doorsplitter == 203 && current.missionNumber == 5 && vars.split == 33)
-        ||
-        (current.doorsplitter == 200 && old.doorsplitter == 201 && current.missionNumber == 5 && vars.split == 34)
-        ||
-        (current.doorsplitter == 212 && old.doorsplitter == 200 && current.missionNumber == 5 && vars.split == 35)
-        ||
-        //Chapter 6
-        (current.doorsplitter == 213 && old.doorsplitter != 213 && current.missionNumber == 6 && vars.split == 36)
-        ||
-        (current.doorsplitter == 214 && old.doorsplitter == 213 && current.missionNumber == 6 && vars.split == 37)
-        ||
-        (current.doorsplitter == 215 && old.doorsplitter == 214 && current.missionNumber == 6 && vars.split == 38)
-        ||
-        (current.doorsplitter == 217 && old.doorsplitter == 215 && current.missionNumber == 6 && vars.split == 39)
-        ||
-        (current.doorsplitter == 216 && old.doorsplitter == 217 && current.missionNumber == 6 && vars.split == 40)
-        ||
-        (current.doorsplitter == 212 && old.doorsplitter == 216 && current.missionNumber == 6 && vars.split == 41)
-        ||
-        (current.doorsplitter == 200 && old.doorsplitter == 212 && current.missionNumber == 6 && vars.split == 42)
-        ||
-        (current.doorsplitter == 204 && old.doorsplitter == 200 && current.missionNumber == 6 && vars.split == 43)
-        ||
-        (current.doorsplitter == 205 && old.doorsplitter == 204 && current.missionNumber == 6 && vars.split == 44)
-        ||
-        (current.doorsplitter == 300 && old.doorsplitter == 205 && current.missionNumber == 6 && vars.split == 45)
-        ||
-        //Chapter 7
-        (current.doorsplitter == 301 && old.doorsplitter != 301 && current.missionNumber == 7 && vars.split == 46)
-        ||
-        (old.doorsplitter == 301 && current.doorsplitter == 302 && current.missionNumber == 7 && vars.split == 47)
-        ||
-        (old.doorsplitter == 302 && current.doorsplitter == 303 && current.missionNumber == 7 && vars.split == 48)
-        ||
-        (old.doorsplitter == 303 && current.doorsplitter == 305 && current.missionNumber == 7) && vars.split == 49
-        ||
-        (old.doorsplitter == 305 && current.doorsplitter == 306 && current.missionNumber == 7 && vars.split == 50)
-        ||
-        (old.doorsplitter == 306 && current.doorsplitter == 301 && current.missionNumber == 7 && vars.split == 51)
-        ||
-        (old.doorsplitter == 301 && current.doorsplitter == 303 && current.missionNumber == 7 && vars.split == 52)
-        ||
-        (old.doorsplitter == 303 && current.doorsplitter == 308 && current.missionNumber == 7 && vars.split == 53)
-        ||
-        (old.doorsplitter == 308 && current.doorsplitter == 307 && current.missionNumber == 7 && vars.split == 54)
-        ||
-        //Chapter 8
-        (current.doorsplitter == 305 && old.doorsplitter != 305 && current.missionNumber == 8 && vars.split == 55)
-        ||
-        (current.doorsplitter == 306 && old.doorsplitter == 305 && current.missionNumber == 8 && vars.split == 56)
-        ||
-        (current.doorsplitter == 301 && old.doorsplitter == 306 && current.missionNumber == 8 && vars.split == 57)
-        ||
-        (current.doorsplitter == 302 && old.doorsplitter == 301 && current.missionNumber == 8 && vars.split == 58)
-        ||
-        (current.doorsplitter == 311 && old.doorsplitter == 302 && current.missionNumber == 8 && vars.split == 59)
-        ||
-        (current.doorsplitter == 308 && old.doorsplitter == 311 && current.missionNumber == 8 && vars.split == 60)
-        ||
-        (current.doorsplitter == 304 && old.doorsplitter == 308 && current.missionNumber == 8 && vars.split == 61)
-        ||
-        (current.doorsplitter == 400 && old.doorsplitter == 304 && current.missionNumber == 8 && vars.split == 62)
-        ||
-        //Chapter 9
-        (current.doorsplitter == 401 && old.doorsplitter != 401 && current.missionNumber == 9 && vars.split == 63)
-        ||
-        (current.doorsplitter == 402 && old.doorsplitter == 401 && current.missionNumber == 9 && vars.split == 64)
-        ||
-        (current.doorsplitter == 403 && old.doorsplitter == 402 && current.missionNumber == 9 && vars.split == 65)
-        ||
-        (current.doorsplitter == 404 && old.doorsplitter == 403 && current.missionNumber == 9 && vars.split == 66)
-        ||
-        //Chapter 10
-        (current.doorsplitter == 403 && old.doorsplitter != 403 && current.missionNumber == 10 && vars.split == 67)
-        ||
-        (current.doorsplitter == 402 && old.doorsplitter == 403 && current.missionNumber == 10 && vars.split == 68)
-        ||
-        (current.doorsplitter == 401 && old.doorsplitter == 402 && current.missionNumber == 10 && vars.split == 69)
-        ||
-        (current.doorsplitter == 405 && old.doorsplitter == 401 && current.missionNumber == 10 && vars.split == 70)
-        ||
-        (current.doorsplitter == 406 && old.doorsplitter == 405 && current.missionNumber == 10 && vars.split == 71)
-        ||
-        (current.doorsplitter == 407 && old.doorsplitter == 406 && current.missionNumber == 10 && vars.split == 72)
-        ||
-        (current.doorsplitter == 408 && old.doorsplitter == 407 && current.missionNumber == 10 && vars.split == 73)
-        ||
-        //Chapter 12
-        (current.doorsplitter == 407 && old.doorsplitter != 407 && current.missionNumber == 12 && vars.split == 74)
-        ||
-        (current.doorsplitter == 406 && old.doorsplitter == 407 && current.missionNumber == 12 && vars.split == 75)
-        ||
-        (current.doorsplitter == 405 && old.doorsplitter == 406 && current.missionNumber == 12 && vars.split == 76)
-        ||
-        (current.doorsplitter == 401 && old.doorsplitter == 405 && current.missionNumber == 12 && vars.split == 77)
-        ||
-        (current.doorsplitter == 400 && old.doorsplitter == 401 && current.missionNumber == 12 && vars.split == 78)
-        ||
-        //Chapter 13
-        (current.doorsplitter == 304 && old.doorsplitter != 304 && current.missionNumber == 13  && vars.split == 79)
-        ||
-        (current.doorsplitter == 308 && old.doorsplitter == 304 && current.missionNumber == 13 && vars.split == 80)
-        ||
-        (current.doorsplitter == 301 && old.doorsplitter == 308 && current.missionNumber == 13 && vars.split == 81)
-        ||
-        (current.doorsplitter == 306 && old.doorsplitter == 301 && current.missionNumber == 13 && vars.split == 82)
-        ||
-        (current.doorsplitter == 305 && old.doorsplitter == 306 && current.missionNumber == 13 && vars.split == 83)
-        ||
-        (current.doorsplitter == 301 && old.doorsplitter == 305 && current.missionNumber == 13 && vars.split == 84)
-        ||
-        (current.doorsplitter == 302 && old.doorsplitter == 301 && current.missionNumber == 13 && vars.split == 85)
-        ||
-        (current.doorsplitter == 311 && old.doorsplitter == 302 && current.missionNumber == 13 && vars.split == 86)
-        ||
-        (current.doorsplitter == 308 && old.doorsplitter == 311 && current.missionNumber == 13 && vars.split == 87)
-        ||
-        (current.doorsplitter == 307 && old.doorsplitter == 308 && current.missionNumber == 13 && vars.split == 88)
-        ||
-        //Chapter 14
-        (current.doorsplitter == 305 && old.doorsplitter != 305 && current.missionNumber == 14 && vars.split == 89)
-        ||
-        (old.doorsplitter == 305 && current.doorsplitter == 306 && current.missionNumber == 14 && vars.split == 90)
-        ||
-        (old.doorsplitter == 306 && current.doorsplitter == 301 && current.missionNumber == 14 && vars.split == 91)
-        ||
-        (old.doorsplitter == 301 && current.doorsplitter == 300 && current.missionNumber == 14 && vars.split == 92)
-        ||
-        (old.doorsplitter == 300 && current.doorsplitter == 205 && current.missionNumber == 14 && vars.split == 93)
-        ||
-        //Chapter 15
-        (current.doorsplitter == 204 && old.doorsplitter != 204 && current.missionNumber == 15 && vars.split == 94)
-        ||
-        (current.doorsplitter == 200 && old.doorsplitter == 204 && current.missionNumber == 15 && vars.split == 95)
-        ||
-        (current.doorsplitter == 206 && old.doorsplitter == 200 && current.missionNumber == 15 && vars.split == 96)
-        ||
-        (current.doorsplitter == 207 && old.doorsplitter == 206 && current.missionNumber == 15 && vars.split == 97)
-        ||
-        (current.doorsplitter == 201 && old.doorsplitter == 207 && current.missionNumber == 15 && vars.split == 98)
-        ||
-        (current.doorsplitter == 202 && old.doorsplitter == 201 && current.missionNumber == 15 && vars.split == 99)
-        ||
-        (current.doorsplitter == 201 && old.doorsplitter == 202 && current.missionNumber == 15 && vars.split == 100)
-        ||
-        (current.doorsplitter == 203 && old.doorsplitter == 201 && current.missionNumber == 15 && vars.split == 101)
-        ||
-        (current.doorsplitter == 211 && old.doorsplitter == 203 && current.missionNumber == 15 && vars.split == 102)
-        ||
-        (current.doorsplitter == 203 && old.doorsplitter == 211 && current.missionNumber == 15 && vars.split == 103)
-        ||
-        (current.doorsplitter == 210 && old.doorsplitter == 203 && current.missionNumber == 15 && vars.split == 104)
-        ||
-        (current.doorsplitter == 209 && old.doorsplitter == 210 && current.missionNumber == 15 && vars.split == 105)
-        ||
-        (current.doorsplitter == 204 && old.doorsplitter == 209 && current.missionNumber == 15 && vars.split == 106)
-        ||
-        //Chapter 16
-        (current.doorsplitter == 200 && old.doorsplitter != 200 && current.missionNumber == 16 && vars.split == 107)
-        ||
-        (current.doorsplitter == 105 && old.doorsplitter == 200 && current.missionNumber == 16 && vars.split == 108)
-        ||
-        (current.doorsplitter == 100 && old.doorsplitter == 105 && current.missionNumber == 16 && vars.split == 109)
-        ||
-        (current.doorsplitter == 9 && old.doorsplitter == 100 && current.missionNumber == 16 && vars.split == 110)
-        ||
-        //Chapter 17
-        (current.doorsplitter == 6 && old.doorsplitter != 6 && current.missionNumber == 17 && vars.split == 111)
-        ||
-        (current.doorsplitter == 5 && old.doorsplitter == 6 && current.missionNumber == 17 && vars.split == 112)
-        ||
-        (current.doorsplitter == 12 && old.doorsplitter == 5 && current.missionNumber == 17 && vars.split == 113)
-        ||
-        (current.doorsplitter == 11 && old.doorsplitter == 12 && current.missionNumber == 17 && vars.split == 114)
-        ||
-        (current.doorsplitter == 10 && old.doorsplitter == 11 && current.missionNumber == 17 && vars.split == 115)
-        ||
-        //Chapter 19
-        (current.doorsplitter == 501 && old.doorsplitter != 501 && current.missionNumber == 19 && vars.split == 116)
-        ||
-        (current.doorsplitter == 507 && old.doorsplitter == 501 && current.missionNumber == 19 && vars.split == 117)
-        ||
-        (current.doorsplitter == 501 && old.doorsplitter == 507 && current.missionNumber == 19 && vars.split == 118)
-        ||
-        (current.doorsplitter == 503 && old.doorsplitter == 501 && current.missionNumber == 19 && vars.split == 119)
-        ||
-        (current.doorsplitter == 501 && old.doorsplitter == 503 && current.missionNumber == 19 && vars.split == 120)
-        ||
-        (current.doorsplitter == 504 && old.doorsplitter == 501 && current.missionNumber == 19 && vars.split == 121)
-        ||
-        (current.doorsplitter == 501 && old.doorsplitter == 504 && current.missionNumber == 19 && vars.split == 122)
-        ||
-        (current.doorsplitter == 505 && old.doorsplitter == 501 && current.missionNumber == 19 && vars.split == 123)
-        ||
-        (current.doorsplitter == 501 && old.doorsplitter == 505 && current.missionNumber == 19 && vars.split == 124)
-        ||
-        (current.doorsplitter == 506 && old.doorsplitter == 501 && current.missionNumber == 19 && vars.split == 125)
-        ||
-        (current.doorsplitter == 501 && old.doorsplitter == 506 && current.missionNumber == 19 && vars.split == 126)){
-            vars.split++;
-            return true;
-        }
-    }      
-     
 
     //BossRush
     if(settings["BossRush"] && old.bloodyPalace < current.bloodyPalace || settings["BossRush"] && current.boss == 16850701 && old.boss != 16850701 && current.bloodyPalace == 101){ 
@@ -782,8 +511,6 @@ split
     }
 }
 
-
-
 reset
 {
     if((current.missionNumber < old.missionNumber || current.ngPlusReset == 592 && settings["MainGame"])   //Reset for MainGame, when the new Chapter is smaller than the old Chapter
@@ -791,6 +518,7 @@ reset
     (current.ngPlusReset == 592 && settings["BossRush"])                     //Reset for BossRush when going to main menu
     || 
     (current.ngPlusReset == 592 && settings["BPS"])){                        //Reset for BloodyPalace when going to main menu
+        vars.split = 0;
         return true;
     }
 }
