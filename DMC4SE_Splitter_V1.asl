@@ -121,7 +121,7 @@ startup
 
 start
 {
-    if((current.ngPlusReset == 352 && current.ngStart == 0 && old.ngStart > 0 && current.missionNumber == 1 && settings["MainGame"] || current.ngPlusReset != 592 && old.ngPlusReset == 592 && settings["MainGame"])
+    if((current.ngPlusReset == 352 && current.ngStart == 0 && old.ngStart > 0 && current.missionNumber == 1 && settings["MainGame"] || current.ngPlusReset != 592 && old.ngPlusReset == 592 && settings["MainGame"] && current.ngPlusReset != 352)
     ||
     (current.bloodyPalace == 20 && current.LoadingScreen > 0 && settings["BossRush"])           //Starts the splits for BossRush
     ||
