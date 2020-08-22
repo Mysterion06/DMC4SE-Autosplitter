@@ -123,9 +123,9 @@ start
 {
     if((current.ngPlusReset == 352 && current.ngStart == 0 && old.ngStart > 0 && current.missionNumber == 1 && settings["MainGame"] || current.ngPlusReset != 592 && old.ngPlusReset == 592 && settings["MainGame"] && current.ngPlusReset != 352)
     ||
-    (current.bloodyPalace == 20 && current.LoadingScreen > 0 && settings["BossRush"] && current.ngPlusReset == 1408)           //Starts the splits for BossRush
+    (current.bloodyPalace == 20 && current.LoadingScreen > 0 && settings["BossRush"])           //Starts the splits for BossRush
     ||
-    (current.bloodyPalace == 1 && current.LoadingScreen > 0 && settings["BPS"] && current.ngPlusReset == 1408))                //Starts the splits for Bloody Palace
+    (current.bloodyPalace == 1 && current.LoadingScreen > 0 && settings["BPS"]))                //Starts the splits for Bloody Palace
     {              
         vars.split = 0;     //Sets the current Split to 0
         vars.chapter = 0;   //Sets the current Chapter to 0
@@ -785,9 +785,9 @@ reset
 {
     if((current.missionNumber < old.missionNumber || current.ngPlusReset == 592 && settings["MainGame"])   //Reset for MainGame, when the new Chapter is smaller than the old Chapter
     || 
-    (current.ngPlusReset == 592 && settings["BossRush"])                     //Reset for BossRush when going to main menu
+    (current.ngPlusReset == 592 && old.ngPlusReset != 592 && settings["BossRush"])                     //Reset for BossRush when going to main menu
     || 
-    (current.ngPlusReset == 592 && settings["BPS"])){                        //Reset for BloodyPalace when going to main menu
+    (current.ngPlusReset == 592 && old.ngPlusReset != 592 && settings["BPS"])){                        //Reset for BloodyPalace when going to main menu
         vars.split = 0;
         return true;
     }
