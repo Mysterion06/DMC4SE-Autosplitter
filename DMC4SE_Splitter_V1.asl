@@ -123,9 +123,9 @@ start
 {
     if((current.ngPlusReset == 352 && current.ngStart == 0 && old.ngStart > 0 && current.missionNumber == 1 && settings["MainGame"] || current.ngPlusReset != 592 && old.ngPlusReset == 592 && settings["MainGame"] && current.ngPlusReset != 352)
     ||
-    (current.bloodyPalace == 20 && current.LoadingScreen > 0 && settings["BossRush"] && old.ngPlusReset == 928)           //Starts the splits for BossRush
+    (current.bloodyPalace == 20 && current.LoadingScreen > 0 && settings["BossRush"] && old.ngPlusReset == 1408)           //Starts the splits for BossRush
     ||
-    (current.bloodyPalace == 1 && current.LoadingScreen > 0 && settings["BPS"] && old.ngPlusReset == 928))                //Starts the splits for Bloody Palace
+    (current.bloodyPalace == 1 && current.LoadingScreen > 0 && settings["BPS"] && old.ngPlusReset == 1408))                //Starts the splits for Bloody Palace
     {              
         vars.split = 0;     //Sets the current Split to 0
         vars.chapter = 0;   //Sets the current Chapter to 0
