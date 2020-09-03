@@ -271,16 +271,16 @@ start
 isLoading
 {
     //Loadremover, removes Loads at the end of a chapter, going through doors, cutscenes, when pausing the game and when a loadingscreen appears
-    if(((current.playerPos == 00000000 || current.cutscene > 0 ) && current.ngPlusReset != 928 && current.missionNumber != 1 || current.cutscene > 0) 
+    if(((current.playerPos == 00000000 || current.cutscene > 0 ) && current.ngPlusReset != 928 && current.missionNumber != 1 && current.ngPlusReset != 592 || current.cutscene > 0 && current.ngPlusReset != 592) 
     || 
-    (current.menu4 > 0 && current.menu == 0 && current.missionTime == old.missionTime && current.missionNumber != 1)
+    (current.menu4 > 0 && current.menu == 0 && current.missionTime == old.missionTime && current.missionNumber != 1 && current.ngPlusReset != 592)
     || 
-    (current.m1LRT == 0 && current.missionNumber == 1 && current.missionTime == old.missionTime && current.ngPlusReset != 928)){
+    (current.m1LRT == 0 && current.missionNumber == 1 && current.missionTime == old.missionTime && current.ngPlusReset != 928 && current.ngPlusReset != 592)){
             return true;
     }
     else{
         return false;
-    }  
+    }
 }
 split
 {
