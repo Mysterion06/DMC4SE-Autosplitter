@@ -39,6 +39,7 @@ init
     vars.split = 0; //Sets the current split to 0
     vars.chapter = 0; //Sets the current Chapter to 0
     vars.rush = 0; //sets rush to 0
+    vars.m7 = 0;
 
     //current.doorsplitter, old.doorsplitter, current.missionNumber, vars.split
     vars.doorSplit = new List<Tuple<int, int, int, int>>{
@@ -97,94 +98,90 @@ init
         Tuple.Create(301, 301, 7, 46),
         Tuple.Create(302, 301, 7, 47),
         Tuple.Create(303, 302, 7, 48),
-        Tuple.Create(305, 303, 7, 49),
-        Tuple.Create(306, 305, 7, 50),
-        Tuple.Create(301, 306, 7, 51),
-        Tuple.Create(303, 301, 7, 52),
-        Tuple.Create(308, 303, 7, 53),
-        Tuple.Create(307, 308, 7, 54),
+        Tuple.Create(308, 303, 7, 49),
+        Tuple.Create(307, 308, 7, 50),
         //Mission 8
-        Tuple.Create(305, 305, 8, 55),
-        Tuple.Create(306, 305, 8, 56),
-        Tuple.Create(301, 306, 8, 57),
-        Tuple.Create(302, 301, 8, 58),
-        Tuple.Create(311, 302, 8, 59),
-        Tuple.Create(308, 311, 8, 60),
-        Tuple.Create(304, 308, 8, 61),
-        Tuple.Create(400, 304, 8, 62),
+        Tuple.Create(305, 305, 8, 51),
+        Tuple.Create(306, 305, 8, 52),
+        Tuple.Create(301, 306, 8, 53),
+        Tuple.Create(302, 301, 8, 54),
+        Tuple.Create(311, 302, 8, 55),
+        Tuple.Create(308, 311, 8, 56),
+        Tuple.Create(304, 308, 8, 57),
+        Tuple.Create(400, 304, 8, 58),
         //Mission 9
-        Tuple.Create(401, 401, 9, 63),
-        Tuple.Create(402, 401, 9, 64),
-        Tuple.Create(403, 402, 9, 65),
-        Tuple.Create(404, 403, 9, 66),
+        Tuple.Create(401, 401, 9, 59),
+        Tuple.Create(402, 401, 9, 60),
+        Tuple.Create(403, 402, 9, 61),
+        Tuple.Create(404, 403, 9, 62),
         //Mission 10
-        Tuple.Create(403, 403, 10, 67),
-        Tuple.Create(402, 403, 10, 68),
-        Tuple.Create(401, 402, 10, 69),
-        Tuple.Create(405, 401, 10, 70),
-        Tuple.Create(406, 405, 10, 71),
-        Tuple.Create(407, 406, 10, 72),
-        Tuple.Create(408, 407, 10, 73),
+        Tuple.Create(403, 403, 10, 63),
+        Tuple.Create(402, 403, 10, 64),
+        Tuple.Create(401, 402, 10, 65),
+        Tuple.Create(405, 401, 10, 66),
+        Tuple.Create(406, 405, 10, 67),
+        Tuple.Create(407, 406, 10, 68),
+        Tuple.Create(408, 407, 10, 69),
         //Mission 12
-        Tuple.Create(407, 407, 12, 74),
-        Tuple.Create(406, 407, 12, 75),
-        Tuple.Create(405, 406, 12, 76),
-        Tuple.Create(401, 405, 12, 77),
-        Tuple.Create(400, 401, 12, 78),
+        Tuple.Create(407, 407, 12, 70),
+        Tuple.Create(406, 407, 12, 71),
+        Tuple.Create(405, 406, 12, 72),
+        Tuple.Create(401, 405, 12, 73),
+        Tuple.Create(400, 401, 12, 74),
         //Mission 13
-        Tuple.Create(304, 304, 13, 79),
-        Tuple.Create(308, 304, 13, 80),
-        Tuple.Create(301, 308, 13, 81),
-        Tuple.Create(306, 301, 13, 82),
-        Tuple.Create(305, 306, 13, 83),
-        Tuple.Create(301, 305, 13, 84),
-        Tuple.Create(302, 301, 13, 85),
-        Tuple.Create(311, 302, 13, 86),
-        Tuple.Create(308, 311, 13, 87),
-        Tuple.Create(307, 308, 13, 88),
+        Tuple.Create(304, 304, 13, 75),
+        Tuple.Create(308, 304, 13, 76),
+        Tuple.Create(301, 308, 13, 77),
+        Tuple.Create(306, 301, 13, 78),
+        Tuple.Create(305, 306, 13, 79),
+        Tuple.Create(301, 305, 13, 80),
+        Tuple.Create(302, 301, 13, 81),
+        Tuple.Create(311, 302, 13, 82),
+        Tuple.Create(308, 311, 13, 83),
+        Tuple.Create(307, 308, 13, 84),
         //Mission 14
-        Tuple.Create(305, 305, 14, 89),
-        Tuple.Create(306, 305, 14, 90),
-        Tuple.Create(301, 306, 14, 91),
-        Tuple.Create(300, 301, 14, 92),
-        Tuple.Create(205, 300, 14, 93),
+        Tuple.Create(305, 305, 14, 85),
+        Tuple.Create(306, 305, 14, 86),
+        Tuple.Create(301, 306, 14, 87),
+        Tuple.Create(300, 301, 14, 88),
+        Tuple.Create(205, 300, 14, 89),
         //Mission 15
-        Tuple.Create(204, 204, 15, 94),
-        Tuple.Create(200, 204, 15, 95),
-        Tuple.Create(206, 200, 15, 96),
-        Tuple.Create(207, 206, 15, 97),
-        Tuple.Create(201, 207, 15, 98),
-        Tuple.Create(202, 201, 15, 99),
-        Tuple.Create(201, 202, 15, 100),
-        Tuple.Create(203, 201, 15, 101),
-        Tuple.Create(210, 203, 15, 102),
-        Tuple.Create(209, 210, 15, 103),
-        Tuple.Create(204, 209, 15, 104),
+        Tuple.Create(204, 204, 15, 90),
+        Tuple.Create(200, 204, 15, 91),
+        Tuple.Create(206, 200, 15, 92),
+        Tuple.Create(207, 206, 15, 93),
+        Tuple.Create(201, 207, 15, 94),
+        Tuple.Create(202, 201, 15, 95),
+        Tuple.Create(201, 202, 15, 96),
+        Tuple.Create(203, 201, 15, 97),
+        Tuple.Create(210, 203, 15, 98),
+        Tuple.Create(209, 210, 15, 99),
+        Tuple.Create(204, 209, 15, 100),
         //Mission 16
-        Tuple.Create(200, 200, 16, 105),
-        Tuple.Create(105, 200, 16, 106),
-        Tuple.Create(100, 105, 16, 107),
-        Tuple.Create(9, 100, 16, 108),
+        Tuple.Create(200, 200, 16, 101),
+        Tuple.Create(105, 200, 16, 102),
+        Tuple.Create(100, 105, 16, 103),
+        Tuple.Create(9, 100, 16, 104),
         //Mission 17
-        Tuple.Create(6, 6, 17, 109),
-        Tuple.Create(5, 6, 17, 110),
-        Tuple.Create(12, 5, 17, 111),
-        Tuple.Create(11, 12, 17, 112),
-        Tuple.Create(10, 11, 17, 113),
+        Tuple.Create(6, 6, 17, 105),
+        Tuple.Create(5, 6, 17, 106),
+        Tuple.Create(12, 5, 17, 107),
+        Tuple.Create(11, 12, 17, 108),
+        Tuple.Create(10, 11, 17, 109),
         //Mission 19
-        Tuple.Create(501, 501, 19, 114),
-        Tuple.Create(507, 501, 19, 115),
-        Tuple.Create(501, 507, 19, 116),
-        Tuple.Create(503, 501, 19, 117),
-        Tuple.Create(501, 503, 19, 118),
-        Tuple.Create(504, 501, 19, 119),
-        Tuple.Create(501, 504, 19, 120),
-        Tuple.Create(505, 501, 19, 121),
-        Tuple.Create(501, 505, 19, 122),
-        Tuple.Create(506, 501, 19, 123),
-        Tuple.Create(501, 506, 19, 124),
+        Tuple.Create(501, 501, 19, 110),
+        Tuple.Create(507, 501, 19, 111),
+        Tuple.Create(501, 507, 19, 112),
+        Tuple.Create(503, 501, 19, 113),
+        Tuple.Create(501, 503, 19, 114),
+        Tuple.Create(504, 501, 19, 115),
+        Tuple.Create(501, 504, 19, 116),
+        Tuple.Create(505, 501, 19, 117),
+        Tuple.Create(501, 505, 19, 118),
+        Tuple.Create(506, 501, 19, 119),
+        Tuple.Create(501, 506, 19, 120),
         //Mission 20 (Only Nero & Dante)
-        Tuple.Create(13, 13, 20, 125),
+        Tuple.Create(13, 13, 20, 121),
     };
 }
 
@@ -263,6 +260,7 @@ start
         vars.split = 0;     //Sets the current Split to 0
         vars.chapter = 0;   //Sets the current Chapter to 0
         vars.rush = 0;      //Sets the current BossRush to 0
+        vars.m7 = 0;
         return true;
     }
 
@@ -340,10 +338,21 @@ split
     }
 
 
-    //Lady/Trish Mission 15 split
-    if(settings["LT"] && current.missionNumber == 15 && (current.doorsplitter == 211 && old.doorsplitter == 203 || current.doorsplitter == 203 && old.doorsplitter == 211)){
-        return true;
+    //Lady/Trish Mission 7 & 15 split
+    if(settings["LT"]){
+        if((settings["LT"] && current.missionNumber == 7 && current.doorsplitter == 305 && old.doorsplitter == 303 && vars.m7 == 0)
+        ||
+        (current.missionNumber == 7 && current.doorsplitter == 306 && old.doorsplitter == 305 && vars.m7 == 1)
+        ||
+        (current.missionNumber == 7 && current.doorsplitter == 303 && old.doorsplitter == 306 && vars.m7 == 2)
+        ||
+        (current.missionNumber == 7 && current.doorsplitter == 303 && old.doorsplitter == 301 && vars.m7 == 3)
+        ||
+        (current.missionNumber == 15 && (current.doorsplitter == 211 && old.doorsplitter == 203 || current.doorsplitter == 203 && old.doorsplitter == 211))){
+            return true;
+        }
     }
+        
 
 
     //BloodyPalace Splitter
