@@ -349,6 +349,7 @@ split
         (current.missionNumber == 7 && current.doorsplitter == 303 && old.doorsplitter == 301 && vars.m7 == 3)
         ||
         (current.missionNumber == 15 && (current.doorsplitter == 211 && old.doorsplitter == 203 || current.doorsplitter == 203 && old.doorsplitter == 211))){
+            vars.m7++;
             return true;
         }
     }
