@@ -244,6 +244,20 @@ startup
     settings.Add("Credo");
     settings.Add("Agnus");
     settings.Add("Dante");
+    
+    if (timer.CurrentTimingMethod == TimingMethod.RealTime) // Inspired by the Modern warfare 3 Autosplitter
+    {        
+        var timingMessage = MessageBox.Show (
+            "This game uses Time without Loads (Game Time) as the main timing method.\n"+
+            "LiveSplit is currently set to show Real Time (RTA).\n"+
+            "Would you like to set the timing method to Game Time? This will make verification easier.",
+            "LiveSplit | Devil May Cry 4",
+            MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+        if (timingMessage == DialogResult.Yes)
+        {
+            timer.CurrentTimingMethod = TimingMethod.GameTime;
+        }
+    }
 }
 
 start
