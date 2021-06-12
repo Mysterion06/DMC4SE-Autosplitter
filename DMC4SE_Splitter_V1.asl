@@ -1,5 +1,5 @@
 //*********************************************** Created by Mysterion_06_ ***************************************************
-//***************************************** Credits: Mysterion_06_ & Wipefinger **********************************************
+//*************************************** Credits: DECosmic & Lonerhero for testing *******************************************
 
 //                                                       Disclaimer: 
 //                 If you play the MainGame tick the Chapter DN/V/LT and if you want to use the doorsplitter, tick DN/V or LT
@@ -7,39 +7,65 @@
 //                 If you play Bloody Palace, untick BossRush and MainGame, tick LRT & BPS
 //                 If you are having lags or you are dropping frames, go to speedrun.com and download the .exe file and exchange it with yours + tick the droppingFrames option in the settings
 //                 To use this splitter, you have to downpatch your game and exchange your .exe and .dll file to get your game to downpatch, a tutorial for that is on the discord server or speedrun.com
+//                 Downpatch not needed anymore, only if you want to use the trainer of this game
 
-state("DevilmayCry4SpecialEdition")
+state("DevilMayCry4SpecialEdition", "Old Patch")
 {
     int missionNumber:      0xF59F00, 0x150;                                //Chapter 1-20 All Characters
     int missionTime:        0xF59F00, 0x264;                                //missionTime for each Chapter
-    int missionStart:       0xF59F00, 0x1A8;                                //Mission menu start mission 1 All Characters    
     int cutscene:           0xF59F00, 0x1A4;                                //Cutscenes    
     int playerPos:          0xF59F00, 0x24;                                 //Stops the timer at Loading screens
     int LoadingScreen:      0xF59F00, 0x14C;                                //Used to start the timer when entering the Stage in BP
     int m1LRT:              0xF59F00, 0x140;                                //Used to remove loadings of mission 1
     int bloodyPalace:       0xF23F38, 0x3830, 0x90;                         //Bloody palace stage
     int boss:               0xF23F38, 0x3834, 0x50, 0x0;                    //Used to split for Stage 101 in BP and Mission 20
-    int bloodyStart:        0xF23F38, 0x3834, 0x10034;                      //Bloody Palace starts    
     int doorsplitter:       0xF23F38, 0x3830, 0x88;                         //Current room Im in, shown in numbers
     int menu:               0xF240A4, 0x2B4;                                //menu to stop the timer at menu screen
     int menu4:              0xF23F84, 0x70, 0x1C;                           //Another menu used to stop the timer at menu screen
     int ngPlusReset:        0xEC9A34, 0x4;                                  //Reset for NG+
     int ngStart:            0xF23F80, 0x4;                                  //Starting timer for NG after the savefile was created
-    int missionNumberVHoH:  0x1359F10, 0x104;                               //Vergil missionNumber Heaven or Hell
+    int KillCount:          0xF59F0C, 0x1D4;                                //Counts all kills throughout the game
+}
+
+state("DevilMayCry4SpecialEdition", "Current Patch"){
+    int missionNumber:      0xEDEEC4, 0x150;                                //Chapter 1-20 All Characters*
+    int missionTime:        0xEDEEC4, 0x264;                                //missionTime for each Chapter*
+    int cutscene:           0xEDEEC4, 0x1A4;                                //Cutscenes*
+    int playerPos:          0xEDEEC4, 0x24;                                 //Stops the timer at Loading screens*
+    int LoadingScreen:      0xEDEEC4, 0x14C;                                //Used to start the timer when entering the Stage in BP*
+    int m1LRT:              0xEDEEC4, 0x140;                                //Used to remove loadings of mission 1*
+    int bloodyPalace:       0xE7E33C, 0x60, 0x1B0;                          //Bloody palace stage*
+    int boss:               0xE7E33C, 0x64, 0x174, 0x0;                     //Used to split for Stage 101 in BP and Mission 20
+    int doorsplitter:       0xE7E33C, 0x60, 0x1A8;                          //Current room Im in, shown in numbers*
+    int menu:               0xEA9068, 0x2B4;                                //menu to stop the timer at menu screen
+    int menu4:              0xE7E388, 0x70, 0x1C;                           //Another menu used to stop the timer at menu screen
+    int ngPlusReset:        0xE7E340, 0x4;                                  //Reset for NG+*
+    int ngStart:            0xE7E384, 0x4;                                  //Starting timer for NG after the savefile was created
 }
 
 init
 {
+    //Version checker
+    switch (modules.First().ModuleMemorySize) {
+        default:
+        version = "Old Patch";
+        break;
+        case (16154624):
+        version = "Current Patch";
+        break;
+    }
+
+    //Sets the refreshRate of the splitter to a certain value depending on the settings you run the game with. (Should only be used by people with weak PCs *Read Tooltip*)
     if(settings["60FPS"]){
         refreshRate = 30;
     }
     if(settings["Variables"]){
         refreshRate = 60;
     }
-    vars.split = 0; //Sets the current split to 0
-    vars.chapter = 0; //Sets the current Chapter to 0
-    vars.rush = 0; //sets rush to 0
-    vars.m7 = 0;
+
+    vars.split = 0;     //Sets the current split to 0
+    vars.rush = 0;      //Sets rush to 0
+    vars.m7 = 0;        //Sets m7 to 0
 
     //current.doorsplitter, old.doorsplitter, current.missionNumber, vars.split
     vars.doorSplit = new List<Tuple<int, int, int, int>>{
@@ -205,36 +231,15 @@ startup
     settings.Add("DoorSplitter", false, "DoorSplitter");
     settings.CurrentDefaultParent = "DoorSplitter";
     settings.Add("DN/V", false, "DN/V");
+    settings.SetToolTip("DN/V", "Check this box if you want to run with Doorsplits as Dante/Nero or Vergil");
     settings.Add("LT", false, "LT");
-    settings.CurrentDefaultParent = "MainGame";
-    settings.Add("DN, V, LT", true, "DN, V, LT");
-    settings.SetToolTip("DN, V, LT", "Always have this box ticked");
-    settings.CurrentDefaultParent = "DN, V, LT";
-    settings.Add("Chapter 1");
-    settings.Add("Chapter 2");
-    settings.Add("Chapter 3");
-    settings.Add("Chapter 4");
-    settings.Add("Chapter 5");
-    settings.Add("Chapter 6");
-    settings.Add("Chapter 7");
-    settings.Add("Chapter 8");
-    settings.Add("Chapter 9");
-    settings.Add("Chapter 10");
-    settings.Add("Chapter 11");
-    settings.Add("Chapter 12");
-    settings.Add("Chapter 13");
-    settings.Add("Chapter 14");
-    settings.Add("Chapter 15");
-    settings.Add("Chapter 16");
-    settings.Add("Chapter 17");
-    settings.Add("Chapter 18");
-    settings.Add("Chapter 19");
-    settings.Add("Chapter 20");
+    settings.SetToolTip("LT", "Check this box if you want to run with Doorsplits as Lady/Trish");
     
     settings.CurrentDefaultParent = "DMC4SE";
     settings.Add("BloodyPalace/BossRush", false, "BloodyPalace/BossRush");
     settings.CurrentDefaultParent = "BloodyPalace/BossRush";
     settings.Add("BPS", false, "BPS");
+    settings.SetToolTip("BPS", "Check this box if you want to run with Stagesplits in Bloody Palace");
     settings.Add("BossRush", false, "BossRush");
     settings.CurrentDefaultParent = "BossRush";
     settings.SetToolTip("BossRush", "Uncheck this box if you DON'T do BossRush");
@@ -245,6 +250,7 @@ startup
     settings.Add("Agnus");
     settings.Add("Dante");
     
+    //Asks the user to set his timer to game time on livesplit, which is needed for verification
     if (timer.CurrentTimingMethod == TimingMethod.RealTime) // Inspired by the Modern warfare 3 Autosplitter
     {        
         var timingMessage = MessageBox.Show (
@@ -272,85 +278,27 @@ start
     (current.bloodyPalace == 1 && current.LoadingScreen > 0 && settings["BPS"]))
     {              
         vars.split = 0;     //Sets the current Split to 0
-        vars.chapter = 0;   //Sets the current Chapter to 0
         vars.rush = 0;      //Sets the current BossRush to 0
-        vars.m7 = 0;
+        vars.m7 = 0;        //Sets m7 to 0
         return true;
     }
-
 }
 
-isLoading
-{
-    //Loadremover, removes Loads at the end of a chapter, going through doors, cutscenes, when pausing the game and when a loadingscreen appears
-    if(((current.playerPos == 00000000 || current.cutscene > 0 ) && current.ngPlusReset != 928 && current.missionNumber != 1 && current.ngPlusReset != 592 || current.cutscene > 0 && current.ngPlusReset != 592) 
-    || 
-    (current.menu4 > 0 && current.menu == 0 && current.missionTime == old.missionTime && current.missionNumber != 1 && current.ngPlusReset != 592)
-    || 
-    (current.m1LRT == 0 && current.missionNumber == 1 && current.missionTime == old.missionTime && current.ngPlusReset != 928 && current.ngPlusReset != 592)){
-            return true;
-    }
-    else{
-        return false;
-    }
-}
+
 split
 {
     //Dante/Nero, Vergil and Lady/Trish Chapter splitter
-    if((current.missionNumber > old.missionNumber && settings["DN, V, LT"]) 
+    if((current.missionNumber > old.missionNumber) 
     || 
-    ((current.boss == 33620487 && old.boss != 33620487 || current.boss == 265223 && old.boss != 265223) && current.missionNumber == 20 && settings["DN, V, LT"])){
-        vars.chapter = (vars.chapter + 1);
-        if ((settings["Chapter 1"] && vars.chapter == 1)
-        ||
-        (settings["Chapter 2"] && vars.chapter == 2)
-        ||
-        (settings["Chapter 3"] && vars.chapter == 3)
-        ||
-        (settings["Chapter 4"] && vars.chapter == 4)
-        ||
-        (settings["Chapter 5"] && vars.chapter == 5)
-        ||
-        (settings["Chapter 6"] && vars.chapter == 6)
-        ||
-        (settings["Chapter 7"] && vars.chapter == 7)
-        ||
-        (settings["Chapter 8"] && vars.chapter == 8)
-        ||
-        (settings["Chapter 9"] && vars.chapter == 9)
-        ||
-        (settings["Chapter 10"] && vars.chapter == 10)
-        ||
-        (settings["Chapter 11"] && vars.chapter == 11)
-        ||
-        (settings["Chapter 12"] && vars.chapter == 12)
-        ||
-        (settings["Chapter 13"] && vars.chapter == 13)
-        ||
-        (settings["Chapter 14"] && vars.chapter == 14)
-        ||
-        (settings["Chapter 15"] && vars.chapter == 15)
-        ||
-        (settings["Chapter 16"] && vars.chapter == 16)
-        ||
-        (settings["Chapter 17"] && vars.chapter == 17)
-        ||
-        (settings["Chapter 18"] && vars.chapter == 18)
-        ||
-        (settings["Chapter 19"] && vars.chapter == 19)
-        ||
-        (settings["Chapter 20"] && vars.chapter == 20)){
-            return true;
-        }
+    ((current.boss == 33620487 && old.boss != 33620487 || current.boss == 265223 && old.boss != 265223) && current.missionNumber == 20)){
+        return true;
     }
-
 
     //Doorsplitter for Dante/Nero, Vergil and Lady/Trish
     if((settings["DN/V"] || settings["LT"]) && vars.doorSplit.Contains(Tuple.Create(current.doorsplitter, old.doorsplitter, current.missionNumber, vars.split))){
         vars.split++;
         return true;        
     }
-
 
     //Lady/Trish Mission 7 & 15 split
     if(settings["LT"]){
@@ -367,14 +315,11 @@ split
             return true;
         }
     }
-        
-
 
     //BloodyPalace Splitter
     if(settings["BPS"] && old.bloodyPalace != current.bloodyPalace || settings["BPS"] && current.boss == 16850701 && old.boss != 16850701 && current.bloodyPalace == 101){
         return true;
     }
-
 
     //BossRush Splitter
     if(settings["BossRush"] && old.bloodyPalace < current.bloodyPalace || settings["BossRush"] && current.boss == 16850701 && old.boss != 16850701 && current.bloodyPalace == 101){ 
@@ -403,5 +348,20 @@ reset
     || 
     (current.ngPlusReset == 592 && old.ngPlusReset != 592 && settings["BPS"])){                        //Reset for BloodyPalace when going to Main Menu
         return true;
+    }
+}
+
+isLoading
+{
+    //Loadremover, removes Loads at the end of a chapter, going through doors, cutscenes, when pausing the game and when a loadingscreen appears
+    if(((current.playerPos == 00000000 || current.cutscene > 0 ) && current.ngPlusReset != 928 && current.missionNumber != 1 && current.ngPlusReset != 592 || current.cutscene > 0 && current.ngPlusReset != 592) 
+    || 
+    (current.menu4 > 0 && current.menu == 0 && current.missionTime == old.missionTime && current.missionNumber != 1 && current.ngPlusReset != 592)
+    || 
+    (current.m1LRT == 0 && current.missionNumber == 1 && current.missionTime == old.missionTime && current.ngPlusReset != 928 && current.ngPlusReset != 592)){
+        return true;
+    }
+    else{
+        return false;
     }
 }
