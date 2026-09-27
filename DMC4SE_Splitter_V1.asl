@@ -54,9 +54,9 @@ state("DevilMayCry4SpecialEdition", "September 2026 Patch"){
     int boss:               0xD8D448, 0x3834, 0x50, 0x0;                    //*Used to split for Stage 101 in BP and Mission 20*
     int doorsplitter:       0xD8D448, 0x3830, 0x88;                         //*Current room Im in, shown in numbers*
     int menu:               0xD8D450, 0x2B4;                                //*menu to stop the timer at menu screen*
-    int menu4:              0xD8D450, 0x40;                          //Another menu used to stop the timer at menu screen
+    int menu4:              0xD8D450, 0x40;                                 //*Another menu used to stop the timer at menu screen*
     int ngPlusReset:        0xD84C78, 0x4;                                  //*Reset for NG+*
-    int ngStart:            0xD8D44C, 0x90;                                  //Starting timer for NG after the savefile was created
+    int ngStart:            0xD8D450, 0x1C4;                                //*Starting timer for NG after the savefile was created*
 }
 
 init
@@ -288,9 +288,9 @@ startup
 start
 {
     //Starts the timer after creating the savefile in NG, choosing costume in NG+, starting BossRush at Stage 20, start BP at Stage 1 (ngPlusReset 352 for the OG Patch)
-    if((current.ngPlusReset == 368 && current.missionNumber == 1 && old.missionNumber == 0 && settings["MainGame"])
+    if((current.ngPlusReset == 368 && current.ngStart == 0 && old.ngStart > 0 && current.missionNumber == 1 && settings["MainGame"])
     || 
-    (current.ngPlusReset != 592 && old.ngPlusReset == 592 && settings["MainGame"] && current.ngPlusReset != 352)
+    (current.ngPlusReset != 592 && old.ngPlusReset == 592 && settings["MainGame"] && current.ngPlusReset != 368)
     ||
     (current.bloodyPalace == 20 && current.LoadingScreen > 0 && settings["BossRush"])
     ||
