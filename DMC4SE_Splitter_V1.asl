@@ -1,4 +1,4 @@
-//*********************************************** Created by Mysterion_06_ ***************************************************
+//*********************************************** Created by Mysterion352 ***************************************************
 //*************************************** Credits: DECosmic & Lonerhero for testing *******************************************
 
 //                                                       Disclaimer: 
@@ -9,7 +9,7 @@
 //                 To use this splitter, you have to downpatch your game and exchange your .exe and .dll file to get your game to downpatch, a tutorial for that is on the discord server or speedrun.com
 //                 Downpatch not needed anymore, only if you want to use the trainer of this game
 
-state("DevilMayCry4SpecialEdition", "Old Patch")
+state("DevilMayCry4SpecialEdition", "OG Patch")
 {
     int missionNumber:      0xF59F00, 0x150;                                //Chapter 1-20 All Characters
     int missionTime:        0xF59F00, 0x264;                                //missionTime for each Chapter
@@ -27,7 +27,7 @@ state("DevilMayCry4SpecialEdition", "Old Patch")
     int KillCount:          0xF59F0C, 0x1D4;                                //Counts all kills throughout the game
 }
 
-state("DevilMayCry4SpecialEdition", "Current Patch"){
+state("DevilMayCry4SpecialEdition", "Old Patch"){
     int missionNumber:      0xEDEEC4, 0x150;                                //Chapter 1-20 All Characters*
     int missionTime:        0xEDEEC4, 0x264;                                //missionTime for each Chapter*
     int cutscene:           0xEDEEC4, 0x1A4;                                //Cutscenes*
@@ -43,15 +43,34 @@ state("DevilMayCry4SpecialEdition", "Current Patch"){
     int ngStart:            0xE7E384, 0x4;                                  //Starting timer for NG after the savefile was created
 }
 
+state("DevilMayCry4SpecialEdition", "September 2026 Patch"){
+    int missionNumber:      0xD54B34, 0x150;                                //*Chapter 1-20 All Characters*
+    int missionTime:        0xD54B34, 0x264;                                //*missionTime for each Chapter*
+    int cutscene:           0xD54B34, 0x1A4;                                //*Cutscenes*    
+    int playerPos:          0xD54B34, 0x24;                                 //*Stops the timer at Loading screens*
+    int LoadingScreen:      0xD54B34, 0x14C;                                //*Used to start the timer when entering the Stage in BP*
+    int m1LRT:              0xD54B34, 0x140;                                //*Used to remove loadings of mission 1*
+    int bloodyPalace:       0xD8D448, 0x3830, 0x90;                         //*Bloody palace stage*
+    int boss:               0xD8D448, 0x3834, 0x50, 0x0;                    //*Used to split for Stage 101 in BP and Mission 20*
+    int doorsplitter:       0xD8D448, 0x3830, 0x88;                         //*Current room Im in, shown in numbers*
+    int menu:               0xD8D450, 0x2B4;                                //*menu to stop the timer at menu screen*
+    int menu4:              0xD8D450, 0x40;                          //Another menu used to stop the timer at menu screen
+    int ngPlusReset:        0xD84C78, 0x4;                                  //*Reset for NG+*
+    int ngStart:            0xD8D44C, 0x90;                                  //Starting timer for NG after the savefile was created
+}
+
 init
 {
     //Version checker
     switch (modules.First().ModuleMemorySize) {
         default:
-        version = "Old Patch";
+        version = "OG Patch";
         break;
         case (16154624):
-        version = "Current Patch";
+        version = "Old Patch";
+        break;
+        case (15228928):
+        version = "September 2026 Patch";
         break;
     }
 
@@ -268,8 +287,8 @@ startup
 
 start
 {
-    //Starts the timer after creating the savefile in NG, choosing costume in NG+, starting BossRush at Stage 20, start BP at Stage 1
-    if((current.ngPlusReset == 352 && current.ngStart == 0 && old.ngStart > 0 && current.missionNumber == 1 && settings["MainGame"])
+    //Starts the timer after creating the savefile in NG, choosing costume in NG+, starting BossRush at Stage 20, start BP at Stage 1 (ngPlusReset 352 for the OG Patch)
+    if((current.ngPlusReset == 368 && current.missionNumber == 1 && old.missionNumber == 0 && settings["MainGame"])
     || 
     (current.ngPlusReset != 592 && old.ngPlusReset == 592 && settings["MainGame"] && current.ngPlusReset != 352)
     ||
@@ -353,10 +372,10 @@ reset
 
 isLoading
 {
-    //Loadremover, removes Loads at the end of a chapter, going through doors, cutscenes, when pausing the game and when a loadingscreen appears
+    //Loadremover, removes Loads at the end of a chapter, going through doors, cutscenes, when pausing the game and when a loadingscreen appears (menu4 > 0 for OG patch)
     if(((current.playerPos == 00000000 || current.cutscene > 0 ) && current.ngPlusReset != 928 && current.missionNumber != 1 && current.ngPlusReset != 592 || current.cutscene > 0 && current.ngPlusReset != 592) 
     || 
-    (current.menu4 > 0 && current.menu == 0 && current.missionTime == old.missionTime && current.missionNumber != 1 && current.ngPlusReset != 592)
+    (current.menu4 != 1021 && current.menu == 0 && current.missionTime == old.missionTime && current.missionNumber != 1 && current.ngPlusReset != 592)
     || 
     (current.m1LRT == 0 && current.missionNumber == 1 && current.missionTime == old.missionTime && current.ngPlusReset != 928 && current.ngPlusReset != 592)){
         return true;
